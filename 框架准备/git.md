@@ -69,6 +69,22 @@
 
   - git 并不会自动合并，而是将冲突体现在当前的文件内，需要用户自己选择保留哪个更改，选择完毕之后，使用 git 上传三步提交。
 
+#### github 的分支操作
+
+一个仓库内可以有多个分支，默认只有一个分支 master ，通常称为主分支(用来放合并后的代码)。也可以创建无数个其他分支。一般工作流程是先在主分支将项目的主体框架搭建完毕，然后创建多个分支，每个分支代表不同的功能，不同的程序猿分别在不同分支内进行开发，开发完毕将代码合并到主分支。
+
+- 创建一个仓库(breach_demo)带上 readMe ,然后克隆到本地，添加上公共的 css 和 js 然后上传。
+- 创建新的分支 a 和 b，使用 `git branch a` 和 `git branch b` 命令。分支创建的时候里面的内容和主分支是一模一样的。
+- 需要将创建好的分支上传到网上，可能直接使用 `git push` 就会成功,但是由于网上并没有新分支，所以需要使用 `git push --set-upstream origin yourbranch` 上传。
+- 现在本地和网上同步(三个分支都同步了)，接下来就可以分开工作了。
+- 分别切换到 a 分支和 b 分支，展开自己的工作，创建新的页面并上传。
+- 主分支分别合并两个分支的内容，然后上传。需要使用 `git merge yourbranch` 命令合并分支。合并之后上传。
+
+#### github 的特殊分支 gh-pages
+
+拿我们创建好的 branch_demo 仓库来说，mater 分之内已经存放好了其他分支做好的项目(项目成品，包括 index...),github 仓库有一个特殊的分支叫 gh-pages ,该分支下的内容会被自动托管到 github 免费服务器(也就是说只要该分支下有 index.html 就可以直接使用网址访问)
+只需要直接创建 gh-pages 分支，并上传到网上即可。
+
 #### git 常用命令
 
 - `git --version` 查看 git 版本号,有时候可以简写成 `-v`
@@ -80,8 +96,14 @@
 - `git status` 查看当前仓库的状态
 - `git log` 查看本地版本
 - `git pull` 将远端的更新拉取到本地
+- `git branch newBranch` 创建新分支
+- `git branch` 查看分支
+- `git checkout yourbranch` 切换分支
+- `git merge yourbranch` 当前分支合并分支其他分支
+- `git pull origin master` 拉取主分支上的更新
+- `git checkout -b newbranch` 创建新的分支并切换过去
 
 #### 注意
 
 - 仓库不能嵌套仓库
-- 测试
+- 版本回退
