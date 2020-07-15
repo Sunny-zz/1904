@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // const let 替代 var
+    // let num = 100
+    // num++
+    // console.log(num)
+    // for (let index = 0; index < 10; index++) {
+
+    // }
+    // console.log(index)
+    // let num = 10 > 5 ? 100 : 0
+    // console.log(num)
+
+    const obj = {
+      username: '貂蝉',
+      userage: 18,
+      level: 10
+    }
+    // const username = obj.username
+    // const userage = obj.userage
+    // 使用的时候 选择使用 username 变量 还是 obj.username
+    // const { username, userage: age, level } = obj
+    // console.log(username, age)
+
+    // const arr = [1, 2, 3, 4, 5]
+    // const [a, b, c] = arr
+    // console.log(a, b, c)
+
+    // const str = 'hello vue'
+    // const [d, e, f] = str
+    // console.log(d, e, f)
+
+    function showInfo({ username, level }) {
+      // const { username, level } = obj
+      console.log(`该英雄的名称是${username}`, `等级${level}`)
+    }
+    showInfo(obj)
+    // 技巧: 实现变量调换
+    let x = 1;
+    let y = 2;
+
+    [x, y] = [y, x];
+
+  </script>
+</body>
+
+</html>
