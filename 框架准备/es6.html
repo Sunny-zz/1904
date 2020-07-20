@@ -1,57 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+  <body>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+      // const let 替代 var
+      // let num = 100
+      // num++
+      // console.log(num)
+      // for (let index = 0; index < 10; index++) {
 
-<body>
-  <script>
-    // const let 替代 var
-    // let num = 100
-    // num++
-    // console.log(num)
-    // for (let index = 0; index < 10; index++) {
+      // }
+      // console.log(index)
+      // let num = 10 > 5 ? 100 : 0
+      // console.log(num)
 
-    // }
-    // console.log(index)
-    // let num = 10 > 5 ? 100 : 0
-    // console.log(num)
+      // const obj = {
+      //   username: '貂蝉',
+      //   userage: 18,
+      //   level: 10
+      // }
+      // const username = obj.username
+      // const userage = obj.userage
+      // 使用的时候 选择使用 username 变量 还是 obj.username
+      // const { username, userage: age, level } = obj
+      // console.log(username, age)
 
-    const obj = {
-      username: '貂蝉',
-      userage: 18,
-      level: 10
-    }
-    // const username = obj.username
-    // const userage = obj.userage
-    // 使用的时候 选择使用 username 变量 还是 obj.username
-    // const { username, userage: age, level } = obj
-    // console.log(username, age)
+      // const arr = [1, 2, 3, 4, 5]
+      // const [a, b, c] = arr
+      // console.log(a, b, c)
 
-    // const arr = [1, 2, 3, 4, 5]
-    // const [a, b, c] = arr
-    // console.log(a, b, c)
+      // const str = 'hello vue'
+      // const [d, e, f] = str
+      // console.log(d, e, f)
 
-    // const str = 'hello vue'
-    // const [d, e, f] = str
-    // console.log(d, e, f)
+      // function showInfo({ username, level }) {
+      //   // const { username, level } = obj
+      //   console.log(`该英雄的名称是${username}`, `等级${level}`)
+      // }
+      // showInfo(obj)
+      // 技巧: 实现变量调换
+      // let x = 1;
+      // let y = 2;
 
-    function showInfo({ username, level }) {
-      // const { username, level } = obj
-      console.log(`该英雄的名称是${username}`, `等级${level}`)
-    }
-    showInfo(obj)
-    // 技巧: 实现变量调换
-    let x = 1;
-    let y = 2;
+      // [x, y] = [y, x];
 
-    [x, y] = [y, x];
+      // const num = 100
+      // num = num + 1
 
-  </script>
-</body>
+      // const obj = {
+      //   name: '吕布',
+      //   age: 28,
+      // }
+      // obj.level = 15
 
+      // active-class
+
+      // 字符串的方法
+      // indexOf  charAt includes startsWith endsWith trim  trimStart()，trimEnd() match  matchAll ,padStart(),padEnd(),replace()
+      // const str = ' hello 2020 '
+      // console.log(str.endsWith('2020'))
+
+      // console.log('x'.padStart(6, 'ab'))
+      //  loadsh 插件 包含了所有的基础数据的处理方式
+
+      // 函数的扩展
+      // 函数的默认参数
+      // const fun = function (color = '黑色', bgColor = '红色') {
+      //   console.log('颜色:::', color)
+      //   console.log('背景色:::', bgColor)
+      //   // 修改高亮
+      // }
+      // fun('蓝色')
+      // const fun = function ({ color = '黑色', bgColor = '蓝色' }) {
+      //   console.log('颜色:::', color)
+      //   console.log('背景色:::', bgColor)
+      // }
+      // fun({ color: '粉色' })
+      // 剩余参数
+      // console.log([1, 2, 3, 4, 5, 6, 7, 8])
+      // function add(...xxxxx) {
+      // console.log([...arguments])
+      // ;[...arguments].forEach(function (ele) {
+      //   console.log(ele)
+      // })
+      // 类数组 --->  数组
+      // console.log(xxxxx)
+      // }
+      // add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+      // function add(num1, num2) {
+      //   return num1 + num2
+      // }
+      // const add = (num1, num2) => num1 + num2
+
+      // 箭头函数定义只能变量式定义
+      // 箭头左边是 函数的参数部分 使用小括号包裹参数逗号拼接,当参数只有一个的时候可以省略小括号
+      // 箭头右边是 函数主体，使用花括号包裹，返回值设置依然使用 return。当函数不需要操作就设置返回值的话可以省略花括号和 return 直接写返回值即可
+      // const res = add(10, 20)
+      // console.log(res)
+
+      // const arr = [1, 1, 2, 3, 41, 21, 312, 3]
+      // 找到数组内第一个大于 20 的元素
+      // find  findeIndex
+      // const currentEle = arr.find(ele => ele > 20)
+      // console.log(currentEle)
+
+      // 函数内的 this 指向
+
+      // var username = 'window'
+      // function xx() {
+      //   var username = 'local'
+      //   console.log(this.username)
+      // }
+      // xx()
+
+      // const obj = {
+      //   name: 'lily',
+      //   say: () => {
+      //     console.log(this)
+      //     console.log(this.name)
+      //   },
+      // }
+      // obj.say()
+
+      // 数组
+
+      const fun1 = function () {
+        console.log(arguments)
+        console.log(Array.from(arguments))
+      }
+      fun1(1, 2, 3, 4, 5, 6)
+      console.log($('ul>li'))
+      console.log(Array.from($('ul>li')))
+      console.log(document.getElementsByTagName('li'))
+
+      const obj = {
+        '0': 12312,
+        '1': 98768,
+        length: 2,
+        // 随便
+      }
+      console.log(obj)
+      console.log(Array.from(obj))
+    </script>
+  </body>
 </html>
