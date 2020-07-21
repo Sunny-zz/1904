@@ -148,3 +148,116 @@ const obj = {
 }
 console.log(Array.from(obj))
 ```
+
+数组新增方法 flat，flatMap
+
+##### 扩展运算符
+
+作用是对象的拷贝，还有类数组转化数组
+
+- 对象展开
+- 数组展开
+
+```js
+const obj = {
+  name: '庄周',
+  age: 18,
+}
+const obj1 = { ...obj }
+obj1.hobby = '浪'
+console.log(obj, obj1)
+
+const arr = [1, 2, 3]
+const arr1 = [...arr]
+arr1.push(4)
+console.log(arr, arr1)
+```
+
+##### 对象的扩展
+
+对象的简洁表示法
+
+```js
+const username = '哈哈'
+const userage = 20
+const obj = {
+  username,
+  // 当对象的属性名和作为该属性的属性值的变量名相同时
+  userage,
+  // 函数可以省略 function，是普通函数
+  say() {},
+}
+console.log(obj)
+```
+
+##### Symbol
+
+第七种数据类型，生成独一无二的数据
+
+##### set 数据结构
+
+类似于数组，但是不能存重复的值
+
+```js
+const ary = new Set([1, 2, 131, 312, 1, 2, 131])
+console.log(ary)
+// 属性
+// size
+console.log(ary.size)
+// 方法
+// add() 向set数据内添加一个成员,返回数据本身
+ary.add(1000)
+console.log(ary)
+// delete() 删除某个值，返回一个布尔值
+//  has() 查看该值是否为Set的成员，返回一个布尔值
+// clear() 清除所有成员
+// 如何将 set 数据转化成数组
+console.log([...ary])
+```
+
+Set 结构的实例有四个遍历方法，可以用于遍历成员。
+
+- Set.prototype.keys()：返回键名的遍历器
+- Set.prototype.values()：返回键值的遍历器
+- Set.prototype.entries()：返回键值对的遍历器
+- Set.prototype.forEach()：使用回调函数遍历每个成员
+
+还有一个额外的 WeakSet 数据结构,内部成员只能是对象类型
+
+##### class 类
+
+写法
+
+```js
+class Hero {
+  // 类的花括号内默认一般只写方法，而且方法之间不需要逗号
+  // constructor 是 class 自带函数，该函数被称作构造器和以前的构造函数类似
+  // constructor 函数当 创建实例化类的时候自动触发
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+  // 除了 constructor 函数之外定义的函数都相当于原来的 prototype 内的方法
+  say = () => {
+    console.log('我是王者荣耀的英雄' + this.name)
+  }
+}
+const a = new Hero('牛', 20)
+const b = new Hero('小乔', 18)
+console.log(a)
+console.log(b)
+a.say()
+```
+
+继承
+
+```js
+class CarryHero extends Hero {
+  constructor(name, age) {
+    super(name, age)
+    // super 调用了才真正实现了继承
+  }
+}
+const c = new CarryHero('赵云', 19)
+console.log(c)
+```

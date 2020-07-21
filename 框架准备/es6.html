@@ -13,6 +13,9 @@
       <li>2</li>
       <li>3</li>
     </ul>
+    <input type="text" />
+    <button>搜索</button>
+    <div id="myDiv"></div>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script>
       // const let 替代 var
@@ -137,23 +140,164 @@
 
       // 数组
 
-      const fun1 = function () {
-        console.log(arguments)
-        console.log(Array.from(arguments))
-      }
-      fun1(1, 2, 3, 4, 5, 6)
-      console.log($('ul>li'))
-      console.log(Array.from($('ul>li')))
-      console.log(document.getElementsByTagName('li'))
+      // const fun1 = function () {
+      //   console.log(arguments)
+      //   console.log(Array.from(arguments))
+      // }
+      // fun1(1, 2, 3, 4, 5, 6)
+      // console.log($('ul>li'))
+      // console.log(Array.from($('ul>li')))
+      // console.log(document.getElementsByTagName('li'))
 
-      const obj = {
-        '0': 12312,
-        '1': 98768,
-        length: 2,
-        // 随便
+      // const obj = {
+      //   '0': 12312,
+      //   '1': 98768,
+      //   length: 2,
+      //   // 随便
+      // }
+      // [1,2,3,4,xxx:1221,xxxxx:1p39u]
+      // console.log(obj)
+      // console.log(Array.from(obj))
+      // const num1 = 11
+      // const num2 = 111
+      // const num3 = 111
+      // const num4 = 112
+      // console.log(Array.of(num1, num2, num3, num4))
+
+      // 多维数组   [1,2,[3,4]]
+      // 将多维数组转化成一维数组可以使用 flat 只能平一层
+      // flatMap  先对数组进行 map 生成新的数组，然后对得到的数组进行一次 flat
+
+      // 扩展运算符
+      // const obj = {
+      //   name: '庄周',
+      //   age: 18,
+      // }
+      // 拷贝这个对象
+      // 1. for in 遍历对象，向新对象添加
+      // 2. Object.assign
+      // 3. jquery 的 extend
+      // 4. 扩展运算符
+      // const obj1 = { ...obj }
+      // obj1.hobby = '浪'
+      // console.log(obj, obj1)
+
+      // const arr = [1, 2, 3]
+      // const arr1 = [...arr]
+      // arr1.push(4)
+      // console.log(arr, arr1)
+
+      // function Hero(name, age) {
+      //   this.name = name
+      //   this.age = age
+      // }
+      // Hero.prototype.say = function () {
+      //   console.log('我是王者荣耀的英雄' + this.name)
+      // }
+      // const a = new Hero('妲己', 18)
+      // a.say()
+      // const b = { ...a }
+      // b.say()
+      // 对象的扩展
+      // const username = '哈哈'
+      // const userage = 20
+      // const obj = {
+      //   username,
+      //   // 当对象的属性名和作为该属性的属性值的变量名相同时
+      //   userage,
+      //   // 函数可以省略 function，是普通函数
+      //   say() {},
+      // }
+      // console.log(obj)
+
+      // const obj1 = {
+      //   xx: 100,
+      //   xxx: 1,
+      //   xxxxx: 10000,
+      // }
+      // const a = 'xx'
+      // obj1[a+'x']
+      // console.log(Object.keys(obj1))
+
+      // 第七种数据类型 symbol
+      // let s1 = Symbol('foo')
+      // let s2 = Symbol('foo')
+      // console.log(s1 === s2)
+
+      // set 数据结构
+
+      // 创建 参数是数组
+      // const ary = new Set([1, 2, 131, 312, 1, 2, 131])
+      // console.log(ary)
+      // 属性
+      // size
+      // console.log(ary.size)
+      // 方法
+      // add() 向set数据内添加一个成员,返回数据本身
+      // ary.add(1000)
+      // console.log(ary)
+      // delete() 删除某个值，返回一个布尔值
+      //  has() 查看该值是否为Set的成员，返回一个布尔值
+      // clear() 清除所有成员
+      // 如何将 set 数据转化成数组
+      // console.log([...ary])
+      // 可以实现数组去重
+      // const newArr = [1, 1231, 23, 12, 31, 3, 1, 12, 31, 23, 12]
+      // console.log([...new Set(newArr)])
+      // 搜索历史展示
+      // 北京   南京   北京
+      // const arr = new Set()
+      // 输入地址之后点击搜索，当我下次进入搜索界面的时候以前的搜索内容还在
+      // const arr = [1, 2]
+      // const ary1 = new WeakSet([arr, arr])
+      // console.log(ary1)
+      // map
+      // const data = {}
+      // const element = document.getElementById('myDiv')
+      // console.log(element)
+      // data[element] = 'metadata'
+      // console.log(data)
+      // class
+      // 构造函数和原型
+      // function Hero(name, age) {
+      //   this.name = name
+      //   this.age = age
+      // }
+      // Hero.prototype.say = function () {
+      //   console.log('我是王者荣耀的英雄' + this.name)
+      // }
+      class Hero {
+        // 类的花括号内默认一般只写方法，而且方法之间不需要逗号
+        // constructor 是 class 自带函数，该函数被称作构造器和以前的构造函数类似
+        // constructor 函数当 创建实例化类的时候自动触发
+        // 如果不需要 constructor 可以省略
+        constructor(name, age) {
+          this.name = name
+          this.age = age
+        }
+        // 除了 constructor 函数之外定义的函数都相当于原来的 prototype 内的方法
+        say = () => {
+          console.log('我是王者荣耀的英雄' + this.name)
+        }
       }
-      console.log(obj)
-      console.log(Array.from(obj))
+      // const a = new Hero('牛', 20)
+      // const b = new Hero('小乔', 18)
+      // console.log(a)
+      // console.log(b)
+      // a.say()
+      // 继承
+      class CarryHero extends Hero {
+        constructor(name, age) {
+          super(name, age)
+          // super 调用了才真正实现了继承
+        }
+      }
+      const c = new CarryHero('赵云', 19)
+      console.log(c)
+
+      // 模块   ----  webpack
+      // promise
+      //
     </script>
   </body>
 </html>
