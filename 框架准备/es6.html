@@ -266,38 +266,41 @@
       // Hero.prototype.say = function () {
       //   console.log('我是王者荣耀的英雄' + this.name)
       // }
-      class Hero {
-        // 类的花括号内默认一般只写方法，而且方法之间不需要逗号
-        // constructor 是 class 自带函数，该函数被称作构造器和以前的构造函数类似
-        // constructor 函数当 创建实例化类的时候自动触发
-        // 如果不需要 constructor 可以省略
-        constructor(name, age) {
-          this.name = name
-          this.age = age
-        }
-        // 除了 constructor 函数之外定义的函数都相当于原来的 prototype 内的方法
-        say = () => {
-          console.log('我是王者荣耀的英雄' + this.name)
-        }
-      }
+      // class Hero {
+      //   // 类的花括号内默认一般只写方法，而且方法之间不需要逗号
+      //   // constructor 是 class 自带函数，该函数被称作构造器和以前的构造函数类似
+      //   // constructor 函数当 创建实例化类的时候自动触发
+      //   // 如果不需要 constructor 可以省略
+      //   constructor(name, age) {
+      //     this.name = name
+      //     this.age = age
+      //   }
+      //   // 除了 constructor 函数之外定义的函数都相当于原来的 prototype 内的方法
+      //   say = () => {
+      //     console.log('我是王者荣耀的英雄' + this.name)
+      //   }
+      // }
       // const a = new Hero('牛', 20)
       // const b = new Hero('小乔', 18)
       // console.log(a)
       // console.log(b)
       // a.say()
       // 继承
-      class CarryHero extends Hero {
-        constructor(name, age) {
-          super(name, age)
-          // super 调用了才真正实现了继承
-        }
-      }
-      const c = new CarryHero('赵云', 19)
-      console.log(c)
+      // class CarryHero extends Hero {
+      //   constructor(name, age) {
+      //     super(name, age)
+      //     // super 调用了才真正实现了继承
+      //   }
+      // }
+      // const c = new CarryHero('赵云', 19)
+      // console.log(c)
 
       // 模块   ----  webpack
-      // promise
-      //
+      // promise 异步解决方案   ajax
+
+      // 一些高级的 js 语法浏览器不支持
+      // 用一些工具去编译es6 ---> es3  5
+      // webpack
     </script>
   </body>
 </html>

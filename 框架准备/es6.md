@@ -261,3 +261,16 @@ class CarryHero extends Hero {
 const c = new CarryHero('赵云', 19)
 console.log(c)
 ```
+
+##### 使用 webpack 打包编译我们的项目
+
+你的 node 项目内使用 node 模块导入各种依赖，wbpack 可以实现将模块的导入导出编译成浏览器认识的语法，也可以将所有的导入模块操作打包。
+如何使用 [参考链接](https://www.webpackjs.com/guides/)
+
+- 项目内安装 webpack
+  ```
+    npm install webpack webpack-cli --save-dev
+  ```
+- 将 js 文件夹的名字改成 src，保证项目的根目录有 src ，并且 src 下存在 index.js，还有 index.js 是页面的主要用的 js
+- 执行编译打包命令 `npx webpac`，会将 index.js 打包编译到项目下的 dist 文件夹下的 main.js
+- 页面导入打包好的 js
