@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // ajax
+      // const xhr = new XMLHttpRequest();
+      // 创建请求  open('请求的类型','地址','是否异步')
+      // 请求的类型 后台规定的
+      // GET  POST  PUT  PATCH DELETE ...
+      // get 请求
+      // xhr.open("GET", "http://jsonplaceholder.typicode.com/posts", true);
+      // xhr.send();
+      // // 监听整个请求过程
+      // // xhr.readyState 请求状态 0-4    4请求成功响应就绪
+      // // xhr.status 请求状态码  200 ok
+      // // xhr.responseText 返回的数据
+      // xhr.onreadystatechange = function () {
+      //   if (xhr.readyState === 4 && xhr.status === 200) {
+      //     // 可以获取后台数据
+      //     console.log(JSON.parse(xhr.responseText));
+      //     // 获取到的数据类似数组字符串   ---> json 串
+      //     // 属性名和属性值必须使用双引号，数字和布尔值不需要，最后一项没有逗号
+      //     // 使用 JSON.parse(json串) 转换
+      //   }
+      // };
+
+      // post 请求 类似登录
+      // ecf878d1-6052-476a-8262-824760c7872b 密码
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://cnodejs.org/api/v1/accesstoken", true);
+      // 发送请求的时候需要传递给后台数据
+      // 但是原生 ajax 不能接收对象为参数，只能接收 json 串,而且得设置请求可以传递 json
+      // 需要使用 xhr.setRequestHeader() 设置请求头
+      // 添加 json 为可传递数据,使用 JSON.stringify 将对象转化为 json 串
+      xhr.setRequestHeader("Content-type", "application/json");
+      xhr.send(
+        JSON.stringify({ accesstoken: "ecf878d1-6052-476a-8262-824760c7872b" })
+      );
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log(JSON.parse(xhr.responseText));
+        }
+      };
+    </script>
+  </body>
+</html>

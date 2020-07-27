@@ -17,44 +17,44 @@ let 声明的变量是可以被修改的
 
 ```js
 const obj = {
-  username: '貂蝉',
+  username: "貂蝉",
   userage: 18,
   level: 10,
-}
-const { username, userage: age } = obj
-console.log(username, age)
+};
+const { username, userage: age } = obj;
+console.log(username, age);
 ```
 
 数组的解构赋值
 
 ```js
-const arr = [1, 2, 3, 4, 5]
-const [a, b, c] = arr
-console.log(a, b, c)
+const arr = [1, 2, 3, 4, 5];
+const [a, b, c] = arr;
+console.log(a, b, c);
 ```
 
 函数参数的解构赋值
 
 ```js
 const obj = {
-  username: '貂蝉',
+  username: "貂蝉",
   userage: 18,
   level: 10,
-}
+};
 function showInfo({ username, level }) {
   // const { username, level } = obj
-  console.log(`该英雄的名称是${username}`, `等级${level}`)
+  console.log(`该英雄的名称是${username}`, `等级${level}`);
 }
-showInfo(obj)
+showInfo(obj);
 ```
 
 技巧: 实现变量调换
 
 ```js
-let x = 1
-let y = 2
+let x = 1;
+let y = 2;
 
-;[x, y] = [y, x]
+[x, y] = [y, x];
 ```
 
 ##### 字符串的扩展
@@ -62,8 +62,8 @@ let y = 2
 模版字符串
 
 ```js
-const username = 'lucy'
-console.log(`my name is ${username}`)
+const username = "lucy";
+console.log(`my name is ${username}`);
 ```
 
 新增的字符串方法
@@ -75,21 +75,21 @@ includes(), startsWith(), endsWith(), trimStart(),trimEnd(),padStart(),padEnd(),
 普通方式参数非对象
 
 ```js
-const fun = function (color = '黑色', bgColor = '红色') {
-  console.log('颜色:::', color)
-  console.log('背景色:::', bgColor)
-}
-fun('蓝色')
+const fun = function (color = "黑色", bgColor = "红色") {
+  console.log("颜色:::", color);
+  console.log("背景色:::", bgColor);
+};
+fun("蓝色");
 ```
 
 参数为对象
 
 ```js
-const fun = function ({ color = '黑色', bgColor = '蓝色' }) {
-  console.log('颜色:::', color)
-  console.log('背景色:::', bgColor)
-}
-fun({ color: '粉色' })
+const fun = function ({ color = "黑色", bgColor = "蓝色" }) {
+  console.log("颜色:::", color);
+  console.log("背景色:::", bgColor);
+};
+fun({ color: "粉色" });
 // 不能什么都不传，最起码传递一个空对象
 ```
 
@@ -102,10 +102,10 @@ function add(...rest) {
   //   console.log(ele)
   // })
   // 类数组 --->  数组
-  console.log(rest)
+  console.log(rest);
   // rest 是数组
 }
-add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 ```
 
 箭头函数
@@ -115,12 +115,12 @@ add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 // function add(num1, num2) {
 //   return num1 + num2
 // }
-const add = (num1, num2) => num1 + num2
+const add = (num1, num2) => num1 + num2;
 // 箭头函数定义只能变量式定义
 // 箭头左边是 函数的参数部分 使用小括号包裹参数逗号拼接,当参数只有一个的时候可以省略小括号
 // 箭头右边是 函数主体，使用花括号包裹，返回值设置依然使用 return。当函数不需要操作就设置返回值的话可以省略花括号和 return 直接写返回值即可
-const res = add(10, 20)
-console.log(res)
+const res = add(10, 20);
+console.log(res);
 ```
 
 箭头函数和普通函数的区别
@@ -136,17 +136,17 @@ Array.from(): 将类数组转化为数组
 
 ```js
 const fun1 = function () {
-  console.log(arguments)
-  console.log(Array.from(arguments))
-}
-fun1(1, 2, 3, 4, 5, 6)
+  console.log(arguments);
+  console.log(Array.from(arguments));
+};
+fun1(1, 2, 3, 4, 5, 6);
 const obj = {
-  '0': 12312,
-  '1': 98768,
+  "0": 12312,
+  "1": 98768,
   length: 2,
   // 随便
-}
-console.log(Array.from(obj))
+};
+console.log(Array.from(obj));
 ```
 
 数组新增方法 flat，flatMap
@@ -160,17 +160,17 @@ console.log(Array.from(obj))
 
 ```js
 const obj = {
-  name: '庄周',
+  name: "庄周",
   age: 18,
-}
-const obj1 = { ...obj }
-obj1.hobby = '浪'
-console.log(obj, obj1)
+};
+const obj1 = { ...obj };
+obj1.hobby = "浪";
+console.log(obj, obj1);
 
-const arr = [1, 2, 3]
-const arr1 = [...arr]
-arr1.push(4)
-console.log(arr, arr1)
+const arr = [1, 2, 3];
+const arr1 = [...arr];
+arr1.push(4);
+console.log(arr, arr1);
 ```
 
 ##### 对象的扩展
@@ -178,16 +178,16 @@ console.log(arr, arr1)
 对象的简洁表示法
 
 ```js
-const username = '哈哈'
-const userage = 20
+const username = "哈哈";
+const userage = 20;
 const obj = {
   username,
   // 当对象的属性名和作为该属性的属性值的变量名相同时
   userage,
   // 函数可以省略 function，是普通函数
   say() {},
-}
-console.log(obj)
+};
+console.log(obj);
 ```
 
 ##### Symbol
@@ -199,20 +199,20 @@ console.log(obj)
 类似于数组，但是不能存重复的值
 
 ```js
-const ary = new Set([1, 2, 131, 312, 1, 2, 131])
-console.log(ary)
+const ary = new Set([1, 2, 131, 312, 1, 2, 131]);
+console.log(ary);
 // 属性
 // size
-console.log(ary.size)
+console.log(ary.size);
 // 方法
 // add() 向set数据内添加一个成员,返回数据本身
-ary.add(1000)
-console.log(ary)
+ary.add(1000);
+console.log(ary);
 // delete() 删除某个值，返回一个布尔值
 //  has() 查看该值是否为Set的成员，返回一个布尔值
 // clear() 清除所有成员
 // 如何将 set 数据转化成数组
-console.log([...ary])
+console.log([...ary]);
 ```
 
 Set 结构的实例有四个遍历方法，可以用于遍历成员。
@@ -234,19 +234,19 @@ class Hero {
   // constructor 是 class 自带函数，该函数被称作构造器和以前的构造函数类似
   // constructor 函数当 创建实例化类的时候自动触发
   constructor(name, age) {
-    this.name = name
-    this.age = age
+    this.name = name;
+    this.age = age;
   }
   // 除了 constructor 函数之外定义的函数都相当于原来的 prototype 内的方法
   say = () => {
-    console.log('我是王者荣耀的英雄' + this.name)
-  }
+    console.log("我是王者荣耀的英雄" + this.name);
+  };
 }
-const a = new Hero('牛', 20)
-const b = new Hero('小乔', 18)
-console.log(a)
-console.log(b)
-a.say()
+const a = new Hero("牛", 20);
+const b = new Hero("小乔", 18);
+console.log(a);
+console.log(b);
+a.say();
 ```
 
 继承
@@ -254,12 +254,12 @@ a.say()
 ```js
 class CarryHero extends Hero {
   constructor(name, age) {
-    super(name, age)
+    super(name, age);
     // super 调用了才真正实现了继承
   }
 }
-const c = new CarryHero('赵云', 19)
-console.log(c)
+const c = new CarryHero("赵云", 19);
+console.log(c);
 ```
 
 ##### 使用 webpack 打包编译我们的项目
@@ -272,5 +272,19 @@ console.log(c)
     npm install webpack webpack-cli --save-dev
   ```
 - 将 js 文件夹的名字改成 src，保证项目的根目录有 src ，并且 src 下存在 index.js，还有 index.js 是页面的主要用的 js
-- 执行编译打包命令 `npx webpac`，会将 index.js 打包编译到项目下的 dist 文件夹下的 main.js
+- 执行编译打包命令 `npx webpack`，会将 src 下的 index.js 打包编译到项目下的 dist 文件夹下的 main.js
 - 页面导入打包好的 js
+- 上面是使用了 webpack 的默认配置进行的打包，可以在项目根目录下新建 `webpack.config.js` 文件，当作 webpack 编译的配置文件。参考网址 `https://www.webpackjs.com/guides/getting-started/#%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6`,复制基础的配置到该文件内。
+- 一直敲编译命令很繁琐，可以使用 package.json 中的 scripts 字段配置'快捷键'。使用 npm run 名 快捷执行。
+
+##### module
+
+导入两种种方式
+
+- 默认导入
+- 命名导入
+
+导出两种种方式
+
+- 默认导出
+- 命名导出
