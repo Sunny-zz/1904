@@ -52,4 +52,62 @@ xhr.onreadystatechange = function () {
 
 ###### jquery ajax
 
+常用方法 `$.ajax()`
+
+```js
+$.ajax({
+  // 请求类型
+  type: "POST",
+  // 请求地址
+  url: "https://cnodejs.org/api/v1/accesstoken",
+  // 请求参数
+  data: { accesstoken: "ecf878d1-6052-476a-8262-824760c7872" },
+  // 请求成功的回调
+  success: function (res) {
+    console.log(res);
+  },
+  // 请求失败的回调
+  error: function (err) {
+    console.log(err);
+  },
+  // 请求结束的回调
+  complete: function () {}
+  // 发给后台的内容类型 默认支持 对象类型
+  // contentType: ""
+  // 请求是否同域 false 代表同域请求  true 代表跨域请求
+  // 一般来说后台独立解决了跨域请求的问题，不需要前端进行配置
+  // 也有前后端一起解决跨域问题，后台需要前端做一些简单的配置
+  // crossDomain: 布尔值
+  // headers: 请求头的设置  可能需要配合后台做一些设置
+});
+```
+
 ###### axios ajax
+
+##### 使用 json-server 模拟后台数据库
+
+- 全局安装 json-server `npm i -g json-server` 可能有点慢
+- 在需要的地方新建 xxx.json 文件,还文件内写法如下
+  ```json
+  {
+    "users": [
+      {
+        "id": 121,
+        "username": "小王"
+      },
+      {
+        "id": 21,
+        "username": "小二"
+      }
+    ]
+  }
+  ```
+  这样的 json 文件生成的数据代表 users 列表数据
+- 在该 json 文件所在的地方打开命令行工具，启动数据库服务。`json-server --watch xxx.json -p 3000`，命令执行完毕之后，数据库就启动了，不要关闭该服务。安装上述 json 文件，启动的服务可以使用 'http://localhost:3008/users' 接口就能访问用户列表了。
+- 更详细的接口文档说明参考[json-server](https://github.com/typicode/json-server)
+
+##### 将自己的项目跑在本地服务器上
+
+- 全局安装 serve `npm i -g serve`
+- 在你的项目内打开命令行工具执行 `serve .`
+- 执行完毕之后你的当前项目内的所有文件已经被跑在了 `http://localhost:5000` 服务器上，默认打开 index.html

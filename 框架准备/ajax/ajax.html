@@ -6,6 +6,7 @@
     <title>Document</title>
   </head>
   <body>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script>
       // ajax
       // const xhr = new XMLHttpRequest();
@@ -13,6 +14,7 @@
       // 请求的类型 后台规定的
       // GET  POST  PUT  PATCH DELETE ...
       // get 请求
+
       // xhr.open("GET", "http://jsonplaceholder.typicode.com/posts", true);
       // xhr.send();
       // // 监听整个请求过程
@@ -31,21 +33,125 @@
 
       // post 请求 类似登录
       // ecf878d1-6052-476a-8262-824760c7872b 密码
-      const xhr = new XMLHttpRequest();
-      xhr.open("POST", "https://cnodejs.org/api/v1/accesstoken", true);
+      // const xhr = new XMLHttpRequest();
+      // xhr.open("POST", "https://cnodejs.org/api/v1/accesstoken", true);
       // 发送请求的时候需要传递给后台数据
       // 但是原生 ajax 不能接收对象为参数，只能接收 json 串,而且得设置请求可以传递 json
       // 需要使用 xhr.setRequestHeader() 设置请求头
       // 添加 json 为可传递数据,使用 JSON.stringify 将对象转化为 json 串
-      xhr.setRequestHeader("Content-type", "application/json");
-      xhr.send(
-        JSON.stringify({ accesstoken: "ecf878d1-6052-476a-8262-824760c7872b" })
-      );
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          console.log(JSON.parse(xhr.responseText));
-        }
-      };
+      // xhr.setRequestHeader("Content-type", "application/json");
+      // xhr.send(
+      //   JSON.stringify({ accesstoken: "ecf878d1-6052-476a-8262-824760c7872b" })
+      // );
+      // xhr.onreadystatechange = function () {
+      //   if (xhr.readyState === 4 && xhr.status === 200) {
+      //     console.log(JSON.parse(xhr.responseText));
+      //   }
+      // };
+
+      // jquery ajax
+      //
+      // get 请求
+      //  $.get(地址,参数,回调函数,返回内容的格式)
+      // 地址 后台接口地址
+      // 参数 请求的参数，不需要可省略
+      // 回调函数  成功之后的回调函数默认接收一个参数就是返回的结果
+      // 返回内容的格式  默认带 json 不需要设置
+      // $.get("http://jsonplaceholder.typicode.com/posts", function (res) {
+      //   console.log(res);
+      // });
+      // post 请求
+      // $.post(地址,参数,回调函数,返回内容的格式)
+      // 参数的意思和 get 一致
+      // $.post(
+      //   "https://cnodejs.org/api/v1/accesstoken",
+      //   { accesstoken: "ecf878d1-6052-476a-8262-824760c7872b" },
+      //   function (res) {
+      //     console.log(res);
+      //   }
+      // );
+
+      // 用 $.ajax() 方法最多
+      // $.ajax({配置对象})
+      // $.ajax({
+      //   // 请求类型
+      //   type: "POST",
+      //   // 请求地址
+      //   url: "https://cnodejs.org/api/v1/accesstoken",
+      //   // 请求参数
+      //   data: { accesstoken: "ecf878d1-6052-476a-8262-824760c7872" },
+      //   // 请求成功的回调
+      //   success: function (res) {
+      //     console.log(res);
+      //   },
+      //   // 请求失败的回调
+      //   error: function (err) {
+      //     console.log(err);
+      //   },
+      //   // 请求结束的回调
+      //   complete: function () {}
+      //   // 发给后台的内容类型 默认支持 对象类型
+      //   // contentType: ""
+      //   // 请求是否同域 false 代表同域请求  true 代表跨域请求
+      //   // 一般来说后台独立解决了跨域请求的问题，不需要前端进行配置
+      //   // 也有前后端一起解决跨域问题，后台需要前端做一些简单的配置
+      //   // crossDomain: 布尔值
+      //   // headers: 请求头的设置  可能需要配合后台做一些设置
+      // });
+
+      // 请求的地址
+      // http://localhost:3008/posts?id=1
+      // 地址栏的问号部分就是查询部分
+      // $.ajax({
+      //   // url: "http://localhost:3008/posts?_limit=10&_page=1",
+      //   url: "http://localhost:3008/posts",
+      //   data: { _limit: 10, _page: 1 },
+      //   success(res) {
+      //     console.log(res);
+      //   }
+      // });
+
+      // axios 专门的请求插件
+
+      // 异步非阻塞
+      // 同步阻塞
+
+      // setTimeout(() => {
+      //   // 异步完毕之后执行的事
+      //   console.log("异步完毕");
+      // }, 1000);
+      // console.log(1);
+      // 嵌套很多的回调，一旦某一环节需要做额外的判断处理
+      // 回调地狱
+      // $(".box").slideDown(1000, function () {
+      //   $('.bxo')
+      // });
+      // promise
+      let num = 10;
+      const promise = new Promise(function (resolve, reject) {
+        // resolve 函数的意思就是成功的回调函数
+        // reject 函数的意思就是失败的回调函数
+        console.log("正在干活计数");
+        setTimeout(() => {
+          num = 99;
+
+          if (num === 100) {
+            console.log("活干完了");
+
+            resolve();
+          } else {
+            console.log("有点问题没做完");
+            reject();
+          }
+        }, 1000);
+      });
+      // .then 就是传递 resolve 函数
+      promise.then(function () {
+        console.log("计数完成了，进行下一步操作");
+      });
+      promise.catch(function () {
+        console.log("没干完，得继续干");
+      });
     </script>
   </body>
 </html>

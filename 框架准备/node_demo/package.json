@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx webpack --config webpack.confi.js"
+    "build": "webpack --config webpack.confi.js"
   },
   "keywords": [],
   "author": "",
