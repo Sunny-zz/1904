@@ -71,7 +71,7 @@ $.ajax({
     console.log(err);
   },
   // 请求结束的回调
-  complete: function () {}
+  complete: function () {},
   // 发给后台的内容类型 默认支持 对象类型
   // contentType: ""
   // 请求是否同域 false 代表同域请求  true 代表跨域请求
@@ -84,9 +84,35 @@ $.ajax({
 
 ###### axios ajax
 
+axios 是专门的 ajax 请求插件，它里面的异步解决方案使用的是 promise。文档参考[网址](https://www.kancloud.cn/yunye/axios/234845)
+
+```js
+// get
+axios
+  .get("http://localhost:3008/posts", {
+    params: {
+      _limit: 20,
+    },
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+// post
+axios
+  .post("https://cnodejs.org/api/v1/accesstoken", {
+    accesstoken: "ecf878d1-6052-476a-8262-824760c7872b",
+  })
+  .then(res => {
+    console.log(res);
+  });
+```
+
 ##### 使用 json-server 模拟后台数据库
 
-- 全局安装 json-server `npm i -g json-server` 可能有点慢
+- 全局安装 json-server `npm i -g json-server` 可能有点慢,安装一次就够了
 - 在需要的地方新建 xxx.json 文件,还文件内写法如下
   ```json
   {
@@ -108,6 +134,10 @@ $.ajax({
 
 ##### 将自己的项目跑在本地服务器上
 
-- 全局安装 serve `npm i -g serve`
+- 全局安装 serve `npm i -g serve`,安装一次就够了
 - 在你的项目内打开命令行工具执行 `serve .`
 - 执行完毕之后你的当前项目内的所有文件已经被跑在了 `http://localhost:5000` 服务器上，默认打开 index.html
+
+##### 项目服务器
+
+项目的开发阶段，前端页面跑在本地(局域网)服务器上，后台数据库服务器只能公司内部访问。

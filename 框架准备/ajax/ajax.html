@@ -7,6 +7,7 @@
   </head>
   <body>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0-0/axios.min.js"></script>
     <script>
       // ajax
       // const xhr = new XMLHttpRequest();
@@ -108,6 +109,7 @@
       //   data: { _limit: 10, _page: 1 },
       //   success(res) {
       //     console.log(res);
+
       //   }
       // });
 
@@ -127,31 +129,81 @@
       //   $('.bxo')
       // });
       // promise
-      let num = 10;
-      const promise = new Promise(function (resolve, reject) {
-        // resolve 函数的意思就是成功的回调函数
-        // reject 函数的意思就是失败的回调函数
-        console.log("正在干活计数");
-        setTimeout(() => {
-          num = 99;
-
-          if (num === 100) {
-            console.log("活干完了");
-
-            resolve();
-          } else {
-            console.log("有点问题没做完");
-            reject();
-          }
-        }, 1000);
-      });
+      // let num = 10;
+      // const promise = new Promise(function (resolve, reject) {
+      //   // resolve 函数的意思就是成功的回调函数
+      //   // reject 函数的意思就是失败的回调函数
+      //   console.log("正在干活计数");
+      //   setTimeout(() => {
+      //     num = 99;
+      //     if (num === 100) {
+      //       console.log("活干完了");
+      //       resolve();
+      //     } else {
+      //       console.log("有点问题没做完");
+      //       reject();
+      //     }
+      //   }, 1000);
+      // });
       // .then 就是传递 resolve 函数
-      promise.then(function () {
-        console.log("计数完成了，进行下一步操作");
-      });
-      promise.catch(function () {
-        console.log("没干完，得继续干");
-      });
+      // .catch 就是传递 reject 函数
+      // 避免了回调嵌套
+      // promise.then(function () {
+      //   console.log("计数完成了，进行下一步操作");
+      // });
+      // promise.catch(function () {
+      //   console.log("没干完，得继续干");
+      // });
+      // setTimeout(
+      //   (value, value1) => {
+      //     console.log(value, value1);
+      //   },
+      //   1000,
+      //   100000,
+      //   50
+      // );
+
+      // function timeout(ms) {
+      //   return new Promise((resolve, reject) => {
+      //     console.log("异步操作正在执行");
+      //     setTimeout(resolve, ms, "done");
+      //   });
+      // }
+
+      // timeout(1000).then(value => {
+      //   console.log("执行完毕之后做的事");
+      //   console.log(value);
+      // });
+
+      // axios 就是使用 promise 封装了异步操作
+      // axios.get('地址').then(res=>{}).catch(err=>{})
+      // then 是成功函数  res 是成功的返回值  axios 会将后台的数据存储到一个对象的data属性内
+      // catch 是失败函数 err是失败的信息
+      // get
+      axios
+        .get("http://localhost:3008/posts", {
+          params: {
+            _limit: 20,
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      // post
+      // https://cnodejs.org/api/v1/accesstoken
+      axios
+        .post("https://cnodejs.org/api/v1/accesstoken", {
+          accesstoken: "ecf878d1-6052-476a-8262-824760c7872b",
+        })
+        .then(res => {
+          console.log(res);
+        });
+      // axios.delete
+      // axios.put
+      // axios.patch
     </script>
   </body>
 </html>
