@@ -92,6 +92,62 @@ export default {
   </div>
   ```
 
+###### 组件的复用技巧 props
+
+当一个组件需要在很多个组件内使用，而且多多少少显示的内容不一样，其实是需要根据组件所在位置进行轻微的修改。此时就可以借助 vue 内的 props 知识点处理。
+父组件嵌套子组件的时候希望子组件要根据我的想法修改一些内容。
+props 的使用
+在父组件内，直接当做自定义属性传递即可
+
+```html
+<button text="Download Now" color="#00f" />
+```
+
+在子组件内，需要使用导出对象下的 props 属性接收
+方式一数组
+
+```js
+export default {
+  name: "Button",
+  props: ["text", "color"]
+};
+```
+
+方式二对象
+
+```js
+export default {
+  name: "Button",
+  // 对象方式 高级可以做简单的校验
+  props: {
+    text: {
+      //  可以设置属性的类型和默认值
+      type: String,
+      default: "default button"
+    },
+    isActive: {
+      type: Boolean,
+      default: false
+    }
+  }
+};
+```
+
+接收完毕之后需要在 template 中使用，使用方式分为两大类
+
+- 在标签的尖括号之间使用，直接用双花括号嵌套 props 名称即可
+
+  ```html
+  <button class="btn">{{text}}</button>
+  ```
+
+- 在标签的属性内使用,需要使用 vue 指令 `v-bind` 也可以直接省略使用 `:`
+
+  ```html
+  <!--  语法就是 v-bind:属性名='这里面直接写js即可'  v-bind: 可以简写成 : -->
+  <button :style="`background-color: ${color}`" class="btn">按钮</button>
+  ```
+
 ###### 小问题
 
 - gitbash 不可用，使用 powershell 运行 vue ui 提示
