@@ -94,6 +94,7 @@ export default {
 
 ###### 组件的复用技巧 props
 
+基础的 prop 使用
 当一个组件需要在很多个组件内使用，而且多多少少显示的内容不一样，其实是需要根据组件所在位置进行轻微的修改。此时就可以借助 vue 内的 props 知识点处理。
 父组件嵌套子组件的时候希望子组件要根据我的想法修改一些内容。
 props 的使用
@@ -147,6 +148,55 @@ export default {
   <!--  语法就是 v-bind:属性名='这里面直接写js即可'  v-bind: 可以简写成 : -->
   <button :style="`background-color: ${color}`" class="btn">按钮</button>
   ```
+
+###### vue 的模板语法
+
+我们在介绍 prop 的时候就已经使用了 vue 的模板语法。在 template 中嵌入 js。
+分为两大类
+
+- 在标签的尖括号之间使用，直接用双花括号嵌套 props 名称即可
+- 在标签的属性内使用,需要使用 vue 指令 `v-bind` 也可以直接省略使用 `:`
+
+###### vue 组件的 data
+
+只要是组件的 html 内容(结构，样式...)发生改变的话，那么这个改变必须由 data 内的某个 数据 控制。
+使用方法
+
+- 需要将变化对应的内容设置成 data
+  ```js
+  export default {
+    name: 'App',
+    data: function () {
+      return {
+        bgColor: 'red',
+      }
+    },
+    ...
+  ```
+- data 的使用
+  - 在 template 中使用直接当成变量，使用模板语法写到标签内即可
+  - 在 script 内使用的使用要用 `this.名` 访问
+- data 的修改
+  - 在 template 中的函数内直接对 data 赋值即可
+  - 在 script 函数内使用 `this.名` 重新赋值,这种表较常用
+
+###### vue 组件内的事件绑定
+
+直接使用 v-on 指令绑定事件，也可以简写成 @
+
+```js
+<button @click="change" class="change">切换颜色</button>
+```
+
+change 是一个函数名，该函数必须声明在，组件导出的对象下的 methods 属性内，注意的是 这里面的函数在 template 内使用的时候直接使用方法名，而在 script 中使用的时候需要使用 `this.方法名`
+
+```js
+  methods: {
+    change() {
+      this.bgColor = 'blue'
+    },
+  },
+```
 
 ###### 小问题
 

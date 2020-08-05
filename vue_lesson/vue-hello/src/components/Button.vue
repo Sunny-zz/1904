@@ -5,30 +5,43 @@
   <!-- 语法就是 v-bind:属性名='这里面直接写js(只能是值或者运算不能是语句)即可'  v-bind: 可以简写成 : -->
   <!-- <button :style="`background-color: ${color}`" class="btn ">{{text}}</button> -->
   <!-- isActive 如何应用 -->
+  <!-- 模板字符串的 ${}  需要写某个值，可以是运算-->
   <!-- <button :class="`btn ${isActive ? 'color' : ''}`">{{ text }}</button> -->
-  <button :class="isActive ? 'btn color' : 'btn'">{{ text }}</button>
+  <button :title="value" :class="isActive ? 'btn color' : 'btn'">{{ text }}</button>
 </template>
 
 <script>
 // 可以负责展示不同的文字内容
 // 那么就将这个不同的内容设置成 props 让父组件传递
 export default {
-  name: "Button",
+  name: 'Button',
   // 接受的时候使用字符串  数组方式
   // props: ["text", "isActive"]
   // 对象方式 高级可以做简单的校验
   props: {
+    // text: String,
     text: {
       //  可以设置属性的类型和默认值
       type: String,
-      default: "default button"
+      default: 'default button',
+      // required: true
     },
     isActive: {
       type: Boolean,
-      default: false
-    }
-  }
-};
+      default: false,
+    },
+    value: {
+      type: String,
+      default: 'success',
+      // 可以自定制匹配校验
+      validator: function (value) {
+        // value 代表的就是父组件传递的值
+        // 这个值必须匹配下列字符串中的一个
+        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+      },
+    },
+  },
+}
 </script>
 
 <style>
