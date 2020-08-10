@@ -18,11 +18,11 @@ import Button from './Button'
 export default {
   name: 'Header',
   components: {
-    Button,
+    Button
   },
   data: function () {
     return {
-      number: 180,
+      number: 180
     }
   },
   // Cannot set property 'number' of undefined"
@@ -35,7 +35,7 @@ export default {
       this.number = value
       // this 指的是组件实例，指的就是这个组件本身
       // 我们可以直接通过 this 能访问到  组件的 data methods  props ...
-    },
+    }
     // 对应的第二种 event 方式
     // handleClick: function (value) {
     //   console.log(event)
@@ -43,7 +43,7 @@ export default {
     //   this.number = value
 
     // },
-  },
+  }
 }
 </script>
 
