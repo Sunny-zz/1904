@@ -198,12 +198,71 @@ change 是一个函数名，该函数必须声明在，组件导出的对象下�
   },
 ```
 
+###### 自定义事件
+
+父组件向子组件传递函数需要使用自定义事件，其实也可以直接使用 props.
+父组件内
+语法： @自定事件名称="父组件内的函数名称"
+
+```
+第一种方式时直接将函数传递过去
+<Button @change="change"></Button>
+第二种方式是将带参数的函数传递过去
+<Button @change="change(index)"></Button>
+```
+
+子组件内
+js 内
+
+```js
+  methods: {
+    handleClick() {
+      // 接收父组件传递过来的函数并调用
+      this.$emit("change");
+      // 这是传参调用
+      // this.$emit("change",4);
+    }
+  }
+```
+
+tenplate 内
+
+```html
+<button @click="$emit('change')">
+  {{ text }}
+</button>
+```
+
+自定义事件还有一个修饰符 .native ,该修饰符的作用就是将自定义事件直接绑定在子组件的根元素标签上，但是这类自定义事件名称必须和原生事件名称相同。
+
+```
+直接给子组件 Button 的根元素绑定了 click 事件
+<Button @click.native="change"></Button>
+```
+
+###### 列表渲染
+
+将一组数据循环渲染到页面上，需要使用指令 `v-for`
+循环渲染两种情况
+
+- 带数据的(有 data)
+  <!-- item in arrList 就相当于遍历数组 arrList, item 代表每一项,想要使用下标的话  (item,index) in arrList -->
+  <!-- key 属性是必须的 而且该循环下唯一 -->
+  ```html
+  <li v-for="item in arrList" :key="唯一值">{{item}}</li>
+  ```
+- 就是循环很多次，不需要 data。这种很少见
+  <!-- 循环10次 -->
+  ```html
+  <li v-for="item in 10" :key="唯一值">{{item}}</li>
+  ```
+
 ###### 组件间的通信
 
 父子组件
 
 - 使用 props，props 一般用来传递值,也可以传递函数(一般不使用)
-- 自定义事件， 向子组件传递函数
+- 自定义事件， 向子组件传递函数，一般是当父组件的 data 想要让子组件修改时使用。
 
 ###### 小问题
 

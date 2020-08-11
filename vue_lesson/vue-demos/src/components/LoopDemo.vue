@@ -4,31 +4,28 @@
       <div class="container" :style="`margin-left: ${ind * -820}px;`">
         <img
           src="https://ossweb-img.qq.com/upload/adw/image/20200807/3d7bb5d246a8f0467620abc2f78ebf2f.jpeg"
-          alt=""
+          alt
         />
         <img
           src="https://ossweb-img.qq.com/upload/adw/image/20200807/3d7bb5d246a8f0467620abc2f78ebf2f.jpeg"
-          alt=""
+          alt
         />
         <img
           src="https://ossweb-img.qq.com/upload/adw/image/20200807/3d7bb5d246a8f0467620abc2f78ebf2f.jpeg"
-          alt=""
+          alt
         />
         <img
           src="https://ossweb-img.qq.com/upload/adw/image/20200807/3d7bb5d246a8f0467620abc2f78ebf2f.jpeg"
-          alt=""
+          alt
         />
-        <img
-          src="https://ossweb-img.qq.com/upload/adw/image/20200807/3d7bb5d246a8f0467620abc2f78ebf2f.jpeg"
-          alt=""
-        />
+        <img :src="`../assets/logo.png`" alt />
       </div>
       <div class="list">
         <!-- <button @click="change(0)" :class="ind === 0 ? 'active' : ''">1</button>
       <button @click="change(1)" :class="ind === 1 ? 'active' : ''">2</button>
       <button @click="change(2)" :class="ind === 2 ? 'active' : ''">3</button>
       <button @click="change(3)" :class="ind === 3 ? 'active' : ''">4</button>
-      <button @click="change(4)" :class="ind === 4 ? 'active' : ''">5</button> -->
+        <button @click="change(4)" :class="ind === 4 ? 'active' : ''">5</button>-->
         <!-- 事件修饰符  .native 的作用是直接给组件的根元素的 dom 节点绑定事件  -->
         <!-- 组件标签的属性  -->
         <!-- 1. props -->
@@ -40,13 +37,13 @@
         <Button :isActive="ind === 1" @change="change(1)" text="1" />
         <Button :isActive="ind === 2" @change="change(2)" text="2" />
         <Button :isActive="ind === 3" @change="change(3)" text="3" />
-        <Button :isActive="ind === 4" @change="change(4)" text="4" /> -->
+        <Button :isActive="ind === 4" @change="change(4)" text="4" />-->
         <Button
           v-for="(item, index) in 5"
           :key="index"
           @change="change(index)"
           :isActive="ind === index"
-          :text="textList[index]"
+          :text="textList[index].text"
         />
         <!-- 子组件想要修改父组件的 data  -->
         <!-- data 只能在自己的组件内使用 this.dataName 修改，想要让其他人修改自己组件的 data ，那么需要先在自己组件内定义好修改的方法，然后将该方法传递给其他组件去执行 -->
@@ -57,7 +54,7 @@
     <!--  -->
     <ul>
       <li v-for="ele in arr" :key="ele">
-        <span> {{ ele }} </span>
+        <span>{{ ele }}</span>
       </li>
     </ul>
     <ul>
@@ -67,27 +64,34 @@
 </template>
 
 <script>
-import Button from "./Button";
+import Button from './Button'
 export default {
-  name: "LoopDemo",
+  name: 'LoopDemo',
   components: {
     Button
   },
-  data: function() {
+  data: function () {
     return {
       // 为什么选择一个 data 不设置两个
       // 因为只要定义了一个 data 那么 vue 就有针对这个 data 做一套虚拟 dom 流程
       ind: 0,
-      arr: [1, 3, 3, 4, 5],
-      textList: ["张", "网", "张", "网", "张"]
-    };
+      arr: [1, 2, 3, 4, 5],
+      textList: [
+        { text: '信息1' },
+        { text: '信息2' },
+        { text: '信息3' },
+        { text: '信息4' },
+        { text: '信息5' }
+      ],
+      imgList: []
+    }
   },
   methods: {
     change(index) {
-      this.ind = index;
+      this.ind = index
     }
   }
-};
+}
 </script>
 
 <style>
