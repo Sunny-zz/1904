@@ -7,7 +7,7 @@
     <!-- <div
       :style="`background-color: ${isActive ? '#00b3d4' : '#ccc'}`"
       class="box"
-    ></div> -->
+    ></div>-->
     <!-- 古老的修改 class 方案 -->
     <!-- <div :class="`box ${isActive ? 'active' : ''}`"></div> -->
     <!-- 官方提供的 style 方案 -->
@@ -15,7 +15,7 @@
     <!-- <div
       :style="{ 'background-color': isActive ? '#00b3d4' : '#ccc' }"
       class="box"
-    ></div> -->
+    ></div>-->
     <!-- 2. style 数组表示法 不推荐使用 比较麻烦不好用 -->
     <!--  官方提供的 class 方案 -->
     <!-- 1. 对象表示法  -->
@@ -29,13 +29,13 @@
 
 <script>
 export default {
-  name: "StyleDemo",
+  name: 'StyleDemo',
   data() {
     return {
       isActive: false
-    };
+    }
   }
-};
+}
 </script>
 
 <style>
