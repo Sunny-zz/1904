@@ -280,6 +280,15 @@ class 绑定
 - 数组表示法
 - 数组内嵌套对象表示法
 
+###### vue 的表单
+
+vue 将表单的输入(文本)绑定成组件的 data ，用组件的 data 去控制。vue 提倡使用 v-model 指令去实现表单的绑定。我们也可以使用 value 配合 input 或者 change 事件替代 v-model 指令。
+v-model 指令的修饰符
+
+- .lazy 实现懒加载将 v-model 的默认事件从 input 改成 change
+- .number 自动将输入的值使用 parseFloat() 转化成数字类型
+- .trim 自动将输入的值的左右空白去掉
+
 ###### 组件间的通信
 
 父子组件
