@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-list">
+  <div v-if="goodsList.length" class="goods-list">
     <h3>{{ goodsType }}</h3>
     <ul>
       <GoodsItem v-for="item in goodsList" :key="item.id" :goods="item" />
@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import GoodsItem from "./GoodsItem";
+import GoodsItem from './GoodsItem'
 export default {
-  name: "GoodsList",
-  props: ["goodsType", "goodsList"],
+  name: 'GoodsList',
+  props: ['goodsType', 'goodsList'],
   components: {
     GoodsItem
   }
-};
+}
 </script>
 
 <style>

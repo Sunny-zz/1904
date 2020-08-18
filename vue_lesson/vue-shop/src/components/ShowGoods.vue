@@ -1,20 +1,45 @@
 <template>
   <div class="show-goods">
-    <SearchForm />
-    <ShowContent />
+    <!-- 用自定义事件传递函数的时候，希望将自定义事件名称使用 kebab-case 命名，不使用 camelCase 方式 -->
+    <SearchForm
+      :searchValue="searchValue"
+      :isHasStock="isHasStock"
+      @changeSearchValue="changeSearchValue"
+      @changeIsHasStock="changeIsHasStock"
+    />
+    <ShowContent :searchValue="searchValue" :isHasStock="isHasStock" />
+    <!-- <button @click="showData">展示自己组件的 data</button> -->
   </div>
 </template>
 
 <script>
-import SearchForm from "./SearchForm";
-import ShowContent from "./ShowContent";
+import SearchForm from './SearchForm'
+import ShowContent from './ShowContent'
 export default {
-  name: "ShowGoods",
+  name: 'ShowGoods',
+  data() {
+    return {
+      searchValue: '',
+      isHasStock: false
+    }
+  },
   components: {
     SearchForm,
     ShowContent
+  },
+  methods: {
+    // showData() {
+    //   console.log('输入的内容------', this.searchValue)
+    //   console.log('是否选择了库存', this.isHasStock)
+    // },
+    changeSearchValue(newValue) {
+      this.searchValue = newValue
+    },
+    changeIsHasStock(newValue) {
+      this.isHasStock = newValue
+    }
   }
-};
+}
 </script>
 
 <style>
