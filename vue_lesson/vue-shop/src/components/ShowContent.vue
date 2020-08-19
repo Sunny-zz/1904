@@ -180,6 +180,11 @@ export default {
       //     name: 'Nexus 7'
       //   }
       // ]
+    },
+    xxx() {
+      // 一顿修改自己的 data
+      console.log('我是组件 ShowContent')
+      return 100
     }
   }
 }

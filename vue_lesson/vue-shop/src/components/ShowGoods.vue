@@ -7,8 +7,9 @@
       @changeSearchValue="changeSearchValue"
       @changeIsHasStock="changeIsHasStock"
     />
-    <ShowContent :searchValue="searchValue" :isHasStock="isHasStock" />
+    <ShowContent ref="ceShi" :searchValue="searchValue" :isHasStock="isHasStock" />
     <!-- <button @click="showData">展示自己组件的 data</button> -->
+    <button @click="handleClick">测试组件上的 ref</button>
   </div>
 </template>
 
@@ -20,7 +21,8 @@ export default {
   data() {
     return {
       searchValue: '',
-      isHasStock: false
+      isHasStock: false,
+      arr1: [1, 2, 3]
     }
   },
   components: {
@@ -37,6 +39,18 @@ export default {
     },
     changeIsHasStock(newValue) {
       this.isHasStock = newValue
+    },
+    handleClick() {
+      console.log(this)
+
+      // console.log(this.$refs.ceShi.xxx())
+      // setTimeout(() => {
+      //   console.log(this)
+      // }, 1000)
+      // const arr2 = [2, 3, 4]
+      // arr2.map((item, index) => {
+      //   return item + this.arr1[index]
+      // })
     }
   }
 }
