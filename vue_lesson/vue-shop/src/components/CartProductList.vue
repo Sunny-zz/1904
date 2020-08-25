@@ -5,7 +5,10 @@
       :key="product.id"
       :product="product"
       @change="changeQuantity"
+      @change-checked="changeChecked"
     />
+    <input type="text" v-model.lazy.number="products[0].quantity" />
+    <!-- 自定义事件的名称请使用 kebab-case 命名  -->
   </div>
 </template>
 
@@ -16,7 +19,7 @@ export default {
   components: {
     CartProduct
   },
-  props: ['products', 'changeQuantity']
+  props: ['products', 'changeQuantity', 'changeChecked']
 }
 </script>
 
