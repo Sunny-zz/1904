@@ -1,7 +1,12 @@
 <template>
   <div class="todo-wrap">
     <h1>todo mvc</h1>
-    <TodoHeader ref="todoHeader" @add-todo="addTodo" />
+    <TodoHeader
+      @change-all-state="changeAllState"
+      :isAllDone="isAllDone"
+      ref="todoHeader"
+      @add-todo="addTodo"
+    />
     <TodoList :delTodo="delTodo" :changeTodoState="changeTodoState" :todos="showTodos" />
     <TodoFooter @change-type="changeType" :type="type" :activeNum="activeNum" />
     <button @click="show">测试</button>
@@ -12,6 +17,11 @@
 import TodoHeader from './components/TodoHeader'
 import TodoList from './components/TodoList'
 import TodoFooter from './components/TodoFooter'
+
+// const arr = [{ a: 10 }, { a: 20 }, { a: 30 }]
+// const arr1 = arr.map((item) => item)
+// console.log(arr[0] === arr1[0])
+
 export default {
   name: 'App',
   components: {
@@ -35,7 +45,7 @@ export default {
         {
           id: 'eyt97t',
           text: '厉害',
-          done: false
+          done: true
         }
       ],
       type: 'all'
@@ -52,6 +62,10 @@ export default {
       // completed ===> 保留已完成的
       const { type } = this
       return this.filterTodos(type)
+    },
+    isAllDone() {
+      // return this.filterTodos('active').length === 0 ? true : false
+      return this.todos.every((item) => item.done)
     }
   },
   methods: {
@@ -92,6 +106,20 @@ export default {
       return this.todos.filter((item) =>
         type === 'all' ? true : type === 'active' ? !item.done : item.done
       )
+    },
+    changeAllState(state) {
+      // [{done: true,...},{done:false,...},{done: true,...}]
+      // true
+      // 数组方法 map
+      // 下面的写法就是使用map 生辰一个新的数组，这个数组内的所有元素给之前也没关系
+      // this.todos = this.todos.map((item) => {
+      //   const newItem = { ...item }
+      //   newItem.done = state
+      //   return newItem
+      // })
+      this.todos.forEach((item) => {
+        item.done = state
+      })
     }
   }
 }

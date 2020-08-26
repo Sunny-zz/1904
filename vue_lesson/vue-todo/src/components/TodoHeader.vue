@@ -1,5 +1,10 @@
 <template>
   <div>
+    <input
+      type="checkbox"
+      :checked="isAllDone"
+      @change="$emit('change-all-state',$event.target.checked)"
+    />
     <input type="text" v-model.trim="value" @keydown.enter="handleClick" />
     <!-- <button @click="$emit('add-todo', value,clearInput)">提交</button> -->
     <button @click="handleClick">提交</button>
@@ -14,6 +19,7 @@ export default {
       value: ''
     }
   },
+  props: ['isAllDone'],
   methods: {
     handleClick() {
       const { value } = this
