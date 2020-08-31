@@ -228,9 +228,7 @@ js 内
 tenplate 内
 
 ```html
-<button @click="$emit('change')">
-  {{ text }}
-</button>
+<button @click="$emit('change')">{{ text }}</button>
 ```
 
 自定义事件还有一个修饰符 .native ,该修饰符的作用就是将自定义事件直接绑定在子组件的根元素标签上，但是这类自定义事件名称必须和原生事件名称相同。
@@ -331,6 +329,17 @@ this.$refs.btnDom;
 
 - methods 将函数设置成普通函数，该函数的根作用域下的 this 就是组件实例.如果根作用域内的其他子作用域想要直接访问 this 那么请设置成箭头函数
 - computed 跟上面 methods 一样
+- 生命周期函数跟上面一样
+
+###### 组件的生命周期
+
+组件从出现到渲染页面或者再页面中销毁，各个阶段 vue 都提供了对应的函数，供开发者使用。这些函数被称作生命周期钩子。生命周期钩子是同步函数。
+初始渲染阶段
+
+- beforeCreate
+- created: data 等其他组件的数据处理完毕,可以在页面初始的时候发送请求更新数据。发送请求使用的是 axios 插件。
+- beforeMount
+- mounted: 组件在页面渲染完毕，可以获取组件内的真实 dom 节点。
 
 ###### 组件间的通信
 
