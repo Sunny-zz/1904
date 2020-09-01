@@ -12,48 +12,20 @@
       </tr>
     </thead>
     <tbody>
-      <BookItem
-        v-for="book in books"
-        :key="book.id"
-        :book="book"
-        @del-book="delBook"
-      />
+      <BookItem v-for="book in books" :key="book.id" :book="book" />
     </tbody>
   </table>
 </template>
 <script>
-import BookItem from "./BookItem";
-import axios from "axios";
+import BookItem from './BookItem'
+
 export default {
-  name: "BookTable",
+  name: 'BookTable',
   components: {
     BookItem
   },
-  data() {
-    return {
-      books: []
-    };
-  },
-  created() {
-    axios.get("http://localhost:3000/books").then(res => {
-      // console.log(res.data);
-      this.books = res.data;
-    });
-  },
-  methods: {
-    delBook(id) {
-      // 因为数据是后台的数据，想要实现删除功能
-      // 首先需要删除后台数据
-      // 等待后台数据删除完毕之后再去删除本地的data
-      axios.delete(`http://localhost:3000/books/${id}`).then(() => {
-        // console.log(res);
-        // this.books = res.data;
-        this.books = this.books.filter(item => item.id !== id);
-        console.log("删除成功");
-      });
-    }
-  }
-};
+  props: ['books']
+}
 </script>
 <style>
 table {
