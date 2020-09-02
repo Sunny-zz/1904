@@ -2,7 +2,14 @@
   <div>
     <h1>vue 综合表格功能制作案例</h1>
     <BookSearch :searchInfo="searchInfo" @change-search-info="changeSearchInfo" />
-    <BookTable :books="showBooks" />
+    <BookTable v-if="isSuccess" :books="showBooks" />
+
+    <img
+      v-else
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599021504907&di=fff57654b4a4f2bcd564d300655bf60d&imgtype=0&src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D2250256431%2C1334239184%26fm%3D214%26gp%3D0.jpg"
+      alt
+    />
+    <Dialog @close="close" :showDialog="showDialog" :currentBook="currentBook" />
   </div>
 </template>
 
@@ -10,12 +17,14 @@
 // $attrs   $listeners
 import BookTable from './components/BookTable'
 import BookSearch from './components/BookSearch'
+import Dialog from './components/Dialog'
 import axios from 'axios'
 export default {
   name: 'App',
   components: {
     BookTable,
-    BookSearch
+    BookSearch,
+    Dialog
   },
   data() {
     return {
@@ -26,7 +35,10 @@ export default {
         title: '',
         importance: 0,
         country: ''
-      }
+      },
+      isSuccess: false,
+      showDialog: false,
+      editBookId: ''
     }
   },
   computed: {
@@ -44,12 +56,32 @@ export default {
           (importance ? book.importance === importance : true) &&
           (country ? book.country === country : true)
       )
+    },
+    currentBook() {
+      // 该计算属性是点击编辑的时候展示正确的书籍内容
+      // 设置了一个 编辑的书籍 id 点击编辑的时候修改 ，然后用该 id 和 books 做计算，计算出来需要编辑的书籍并展示
+      // 但是当没有点击编辑的时候 编辑的书籍 id 不存在那么计算出来的书籍就是 undefined 传递给dialog 会报错(因为 Dialog 写的是 v-show)
+      // 所以当编辑的书籍 id 不存在的时候，该计算属性返回一个默认对象
+      return this.editBookId
+        ? this.books.find((item) => item.id === this.editBookId)
+        : {
+            id: '0',
+            title: '',
+            author: '',
+            importance: 0,
+            status: '',
+            country: '',
+            comment: ''
+          }
     }
   },
   created() {
     axios.get('http://localhost:3000/books').then((res) => {
       // console.log(res.data);
-      this.books = res.data
+      setTimeout(() => {
+        this.isSuccess = true
+        this.books = res.data
+      }, 1000)
     })
   },
 
@@ -76,6 +108,31 @@ export default {
       this.searchInfo.title = title
       this.searchInfo.importance = importance
       this.searchInfo.country = country
+    },
+    open() {
+      this.showDialog = true
+    },
+    close() {
+      this.showDialog = false
+    },
+    // toggle(val) {
+    //   this.showDialog = val
+    // }
+    changeEditBookId(id) {
+      this.editBookId = id
+    },
+    editBook(newBook) {
+      // 当时使用数组下标对数组直接进行修改时不会触发视图更新
+      // arr [1,2,3]
+      // arr[0] = 5
+      axios
+        .patch(`http://localhost:3000/books/${newBook.id}`, newBook)
+        .then((res) => {
+          console.log(res)
+          this.books = this.books.map((item) =>
+            item.id === newBook.id ? newBook : item
+          )
+        })
     }
   }
 }

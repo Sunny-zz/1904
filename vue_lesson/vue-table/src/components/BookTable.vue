@@ -1,5 +1,5 @@
 <template>
-  <table v-if="books.length">
+  <table>
     <thead>
       <tr>
         <th style="width: 100px">序号</th>
@@ -11,9 +11,10 @@
         <th>操作</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody v-if="books.length">
       <BookItem v-for="book in books" :key="book.id" :book="book" />
     </tbody>
+    <div v-else>暂无数据</div>
   </table>
 </template>
 <script>

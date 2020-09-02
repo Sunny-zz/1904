@@ -2,13 +2,12 @@
   "books": [
     {
       "id": "0",
-      "title": "Porro officia voluptatum aut sint at",
+      "title": "voluptatum aut sint at",
       "author": "Lydia Yost",
-      "importance": 2,
+      "importance": "2",
       "status": "draft",
       "country": "USA",
-      "comment": "点评 随便写点啥",
-      "cha": "title: \"新的 vue\""
+      "comment": "点评 随便写点啥"
     },
     {
       "id": "1",
@@ -39,10 +38,10 @@
     },
     {
       "id": "4",
-      "title": "Sit quam inventore aperiam doloremque itaque",
+      "title": " quam inventore aperiam doloremque itaque",
       "author": "April Runolfsson",
-      "importance": 1,
-      "status": "deleted",
+      "importance": "1",
+      "status": "published",
       "country": "Eurozone",
       "comment": "Aut minus voluptatibus."
     },
