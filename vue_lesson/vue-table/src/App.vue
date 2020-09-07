@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>vue 综合表格功能制作案例</h1>
-    <BookSearch :searchInfo="searchInfo" @change-search-info="changeSearchInfo" />
+    <BookSearch :searchInfo="searchInfo" @change-search-info="changeSearchInfo" @open="open" />
     <BookTable v-if="isSuccess" :books="showBooks" />
 
     <img
@@ -19,6 +19,8 @@ import BookTable from './components/BookTable'
 import BookSearch from './components/BookSearch'
 import Dialog from './components/Dialog'
 import axios from 'axios'
+import { $http } from './axios'
+
 export default {
   name: 'App',
   components: {
@@ -65,7 +67,6 @@ export default {
       return this.editBookId
         ? this.books.find((item) => item.id === this.editBookId)
         : {
-            id: '0',
             title: '',
             author: '',
             importance: 0,
@@ -75,16 +76,22 @@ export default {
           }
     }
   },
+  // get  post  delete  patch  put
   created() {
-    axios.get('http://localhost:3000/books').then((res) => {
-      // console.log(res.data);
+    $http({ method: 'get' }).then((res) => {
       setTimeout(() => {
         this.isSuccess = true
         this.books = res.data
       }, 1000)
     })
+    // axios.get('http://localhost:3000/books').then((res) => {
+    //   // console.log(res.data);
+    //   setTimeout(() => {
+    //     this.isSuccess = true
+    //     this.books = res.data
+    //   }, 1000)
+    // })
   },
-
   // 在子组件内使用 $parent 可以获取父组件实例
   // 在父组件内使用 $children 可以获取所有子组件实例组成的数组
   // mounted() {
@@ -95,11 +102,15 @@ export default {
       // 因为数据是后台的数据，想要实现删除功能
       // 首先需要删除后台数据
       // 等待后台数据删除完毕之后再去删除本地的data
-      axios.delete(`http://localhost:3000/books/${id}`).then(() => {
-        // console.log(res);
-        // this.books = res.data;
+      // axios.delete(`http://localhost:3000/books/${id}`).then(() => {
+      //   // console.log(res);
+      //   // this.books = res.data;
+      //   this.books = this.books.filter((item) => item.id !== id)
+      //   // console.log("删除成功");
+      // })
+
+      $http({ method: 'delete', url: id }).then(() => {
         this.books = this.books.filter((item) => item.id !== id)
-        // console.log("删除成功");
       })
     },
     changeSearchInfo(title, importance, country) {
@@ -125,14 +136,32 @@ export default {
       // 当时使用数组下标对数组直接进行修改时不会触发视图更新
       // arr [1,2,3]
       // arr[0] = 5
+      //  $http('patch', 'http://localhost:3000/books/id', 'newBook').then(res => {
+      //   //  想执行的操作
+      //  })
       axios
         .patch(`http://localhost:3000/books/${newBook.id}`, newBook)
-        .then((res) => {
-          console.log(res)
+        .then(() => {
+          // console.log(res)
           this.books = this.books.map((item) =>
             item.id === newBook.id ? newBook : item
           )
+          this.editBookId = ''
         })
+    },
+    addBook(newBook) {
+      $http({
+        method: 'post',
+        data: newBook
+      }).then((res) => {
+        this.books.push(res.data)
+      })
+      // 删除 newBook 对象下的 id 属性
+      // delete newBook.id
+      // axios.post(`http://localhost:3000/books`, newBook).then((res) => {
+      //   // console.log(res)
+      //   this.books.push(res.data)
+      // })
     }
   }
 }

@@ -47,13 +47,20 @@ export default {
   props: ['showDialog', 'currentBook'],
   methods: {
     ok() {
+      // 区分是点击了编辑按钮的弹窗还是添加按钮的弹窗
+      // 根据传递过来的计算属性 currentBook 的 id 属性去判断 什么时候添加还是编辑
+      // 当点击了编辑弹出来的弹窗实现的是下面的功能
       const newBook = { ...this.currentBook }
       newBook.country = this.$refs.country.value
       newBook.title = this.$refs.title.value
       newBook.status = this.$refs.status.value
       newBook.importance = this.$refs.importance.value
       newBook.comment = this.$refs.comment.value
-      this.$parent.editBook(newBook)
+      if (newBook.id) {
+        this.$parent.editBook(newBook)
+      } else {
+        this.$parent.addBook(newBook)
+      }
       this.$emit('close')
     }
   }

@@ -32,12 +32,18 @@
       @click="$emit('change-search-info',$refs.searchTitle.value,Number($refs.searchImpor.value),$refs.searchCountry.value)"
       class="search"
     >搜索</button>
+    <button @click="add">添加</button>
   </div>
 </template>
 <script>
 export default {
   name: 'BookSearch',
-  props: ['searchInfo']
+  props: ['searchInfo', 'open'],
+  methods: {
+    add() {
+      this.$emit('open')
+    }
+  }
 }
 </script>
 <style>

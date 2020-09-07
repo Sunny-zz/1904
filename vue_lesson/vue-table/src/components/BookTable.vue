@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody v-if="books.length">
-      <BookItem v-for="book in books" :key="book.id" :book="book" />
+      <BookItem v-for="(book,index) in books" :key="book.id" :book="book" :index="index" />
     </tbody>
     <div v-else>暂无数据</div>
   </table>
