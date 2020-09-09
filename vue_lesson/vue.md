@@ -341,6 +341,16 @@ this.$refs.btnDom;
 - beforeMount
 - mounted: 组件在页面渲染完毕，可以获取组件内的真实 dom 节点。
 
+数据更新阶段
+
+- beforeUpdate 数据更新时调用，发生虚拟 dom 打补丁之前
+- updated 数据更新完毕，dom 渲染完毕
+
+组件的销毁阶段
+
+- beforeDestory 组件即将被销毁，并不是组件的内容在页面上消失
+- destoryed 组件销毁完毕，我们在这个生命周期内，可以手动解除一些跟该组件的无关的一些操作(setInterval 跟浏览系相关的一些事情)
+
 ###### 组件间的通信
 
 父子组件
