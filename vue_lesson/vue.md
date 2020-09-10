@@ -351,12 +351,52 @@ this.$refs.btnDom;
 - beforeDestory 组件即将被销毁，并不是组件的内容在页面上消失
 - destoryed 组件销毁完毕，我们在这个生命周期内，可以手动解除一些跟该组件的无关的一些操作(setInterval 跟浏览系相关的一些事情)
 
+###### 动态组件
+
+当你想要根据一个数据切换不同组件的展示，此时可以使用动态组件。动态组件是由 vue 的自带 component 元素搭配 is 属性代码如下
+动态组件的切换方式是属于 v-if 的切换
+
+```html
+<!-- currentComponentName属性 的值需要和组件名相同 -->
+<!-- 当修改 currentComponentName属性 的时候就会切换不同的组件展示了  -->
+<component :is="currentComponentName"> </component>
+```
+
+动态组件搭配 keep-alive 实现动态组件的数据缓存
+当动态组件切换的时候每个组件默认都会变成初始状态，假如有的组件内有 data 并且希望 data 修改的时候能够保留，意思就是动态组件切换的时候中间的某个组件的 data 不会被初始化。此时就需要使用 keep-alive
+
+```html
+<keep-alive includes="Home" exclude="Home" :max="10">
+  <!-- includes 属性的属性值可以是字符串或者正则，匹配的组件名才缓存数据 -->
+  <!-- exclude 与 includes 相反 -->
+  <!-- max 最多缓存的组件实例个数   -->
+  <component :is="currentComponentName"> </component>
+</keep-alive>
+```
+
 ###### 组件间的通信
 
 父子组件
 
 - 使用 props，props 一般用来传递值,也可以传递函数(一般不使用)
 - 自定义事件， 向子组件传递函数，一般是当父组件的 data 想要让子组件修改时使用。
+  - 当你要实现子组件同步父组件的 data 时，一般采取父组件内定义事件传递给子组件执行的方案，此方案可以使用 .sync 修饰符简化
+    自定义事件的基础写法，组件名写成 update:title
+    父组件内的两种自写法
+  ```html
+  <!-- 还有一种就是将事件函数定义在父组件内的 methods 内 -->
+  <!-- 下面的这个写法 $event 代表的就是子组件调用函数传递的参数 -->
+  <Box :title="title" @update:title="title = $event"></Box>
+  ```
+  简化
+  ```html
+  <!-- 上面写法的语法糖 -->
+  <Box :title.sync="title"></Box>
+  ```
+  子组件内
+  ```js
+  this.$emit("update:title", "新的值");
+  ```
 - 给子组件设置 ref
 - 父组件内使用 \$children 可以获取所有子组件的实例组成的数组
 - 子组件内使用 \$parent 获取父组件实例
@@ -369,9 +409,15 @@ this.$refs.btnDom;
 
 - gitbash 不可用，使用 powershell 运行 vue ui 提示
 
-  ```
-  无法加载文件 C:\Users\sunnyzz\AppData\Roaming\npm\vue.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https
-  :/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。
-  ```
+```
 
-  以管理员身份打开命令行输入 `Set-ExecutionPolicy RemoteSigned` 然后输入 Y 。再次运行 vue ui 即可
+无法加载文件 C:\Users\sunnyzz\AppData\Roaming\npm\vue.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https
+:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。
+
+```
+
+以管理员身份打开命令行输入 `Set-ExecutionPolicy RemoteSigned` 然后输入 Y 。再次运行 vue ui 即可
+
+```
+
+```
