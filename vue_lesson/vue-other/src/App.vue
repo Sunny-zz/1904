@@ -7,19 +7,19 @@
   </div>
 </template>
 <script>
-import Tabs from "./components/Tabs";
-import TranstionDemo from "./components/TranstionDemo";
-import MyTranstionDemo from "./components/MyTranstionDemo";
-import WatchDemo from "./components/WatchDemo";
+import Tabs from './components/Tabs'
+import TranstionDemo from './components/TranstionDemo'
+import MyTranstionDemo from './components/MyTranstionDemo'
+import WatchDemo from './components/WatchDemo'
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Tabs,
     TranstionDemo,
     MyTranstionDemo,
     WatchDemo
   }
-};
+}
 </script>
 <style>
 body {

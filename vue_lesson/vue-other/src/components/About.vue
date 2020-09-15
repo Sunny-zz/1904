@@ -6,13 +6,13 @@
 </template>
 <script>
 export default {
-  name: "About",
+  name: 'About',
   data() {
     return {
       show: true
-    };
+    }
   }
-};
+}
 </script>
 <style>
 .box {

@@ -307,6 +307,55 @@ computed: {
 
 用法和 data 一致
 
+当你的一个计算属性想要实现反向操作的时候，意思就是直接给计算属性重新赋值，然后让计算属性的来源 data 被修改。此时可以给计算属性设置 setter ,代码如下
+
+```js
+// firstName 和 lastName 是组件的 data
+// 当计算属性存在 setter 的时候计算属性就写成了 对象类型
+computed: {
+    fullName: {
+      get() {
+        return this.firstName + " " + this.lastName;
+      },
+      set(newValue) {
+        // newValue 代表新的计算属性 或者叫更改之后的计算属性
+        // setter 用来修改计算属性的来源 data 的
+        this.firstName = newValue.split(" ")[0];
+        this.lastName = newValue.split(" ")[1];
+      }
+    }
+  },
+```
+
+###### vue 组件的侦听器 watch
+
+当你的计算属性需要根据异步操作来计算，但是计算属性函数内要直接返回结果，不能添加异步操作。所以可以使用 watch 实现。
+使用案例
+
+```js
+// question 和 answer 是组件的 data，answer 要随着 question 的变化而变化，但是如何变化要发送请求才知道
+// watch 对象下有几个属性
+// 第一个 handler 是数据变化的触发的函数
+// 第二个 immediate 在组件初始化的时候就执行一次 handler
+// 第三个 deep 为了发现对象内部值的变化，可以在选项参数中指定 deep: true。
+watch: {
+    question: {
+      // 监听 question 修改 answer
+      handler() {
+        // 当 question 发生变化是就会执行
+        if (this.question) {
+          setTimeout(() => {
+            // 向后台获取答案
+            this.answer = Math.random();
+          }, 100);
+        }
+      },
+      // 进入页面就执行一次
+      immediate: true
+    }
+  }
+```
+
 ###### vue 组件的 ref
 
 当你想在 vue 组件内获取一个元素的真实 dom 结构的时候，可以使用原生方案 document 一套，也可以借助插件(没讲)。但是呢，vue 其实提供了一个方案，就是组件的 ref。一般获取真实 dom 节点用于获取某个值，并不是用于修改。
