@@ -439,6 +439,34 @@ vue 本身自带了一个 transition 组件，使用该组件配合一些样式�
 
 - v-leave-to：2.1.8 版及以上定义离开过渡的结束状态。在离开过渡被触发之后下一帧生效 (与此同时 v-leave 被删除)，在过渡/动画完成之后移除。
 
+###### vue 的路由 vue-router
+
+对于 vue 这种单页面应用，官方提供了 vue-router 库，来实现多页的效果。
+如何实现
+
+创建
+
+- 安装 vue-router 包
+- 新建 router.js 里面创建路由
+  - 导入页面所有需要的页面组件
+  - 根据页面组件创建路由数组
+  - 创建 vue 路由实例
+- 在 main.js 导入创建好的路由实例，加入到整个 vue 项目中
+
+使用
+
+需要用 Vue.use(VueRouter) 将 vue-router 内的自带组件制作成 vue 的插件，也就是说在整个 vue 项目中可以随意使用 vue-router 内的自带组件了
+router-view 组件代表整个路由，使用 router-link 组件进行路由跳转
+
+快速创建路由方式(前提是 vue 的环境时 vue-cli3.0 以上)
+
+- 使用 vue ui 安装插件，选择安装 vue-router 的插件
+- 使用命令行工具 执行 `vue add vue-router`
+
+快速安装之后，项目内就会自带一个路由 demo，直接使用即可
+
+对于 router-view 和 router-link 组件的各种配置参考 [vue-router 官方文档](https://router.vuejs.org/zh/)
+
 ###### 组件间的通信
 
 父子组件
