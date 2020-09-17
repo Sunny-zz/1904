@@ -7,7 +7,12 @@
         src="https://s3.pstatp.com/toutiao/xitu_juejin_web/img/logo.a7995ad.svg"
         alt=""
     /></router-link>
-    <router-link to="/" exact>首页</router-link>
+    <router-link
+      to="/"
+      :class="$route.path !== '/pins' ? 'router-link-active' : ''"
+      exact
+      >首页</router-link
+    >
     <router-link to="/pins">沸点</router-link>
     <!-- active-class 设置激活的类名 -->
     <!-- <router-link to="/" active-class="active" exact>Home</router-link> |

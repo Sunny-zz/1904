@@ -24,6 +24,11 @@ const routes = [
     // Home 页面名需要设置子页面添加 children 属性
     // 子页面的展示也是需要使用 router-view
     children: [
+      // 默认显示的子路由
+      {
+        path: "",
+        component: PostList
+      },
       {
         // 子页面的 path 属性,开头不需要加 /
         // 当一个组件当成很多个页面，那么需要将 path 设置成动态路由
