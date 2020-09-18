@@ -24,7 +24,8 @@
         {{ post.title }}
       </li>
     </ul>
-    <div v-else>稍等</div>
+    <!-- <div v-else-if="!success">稍等</div> -->
+    <div v-else>{{ showText }}</div>
   </div>
 </template>
 <script>
@@ -35,9 +36,13 @@ import axios from "axios";
 //  $router 代表整个 vue 的路由实例信息，也就是自己创建的路由实例
 export default {
   name: "PostList",
+  props: ["type"],
   data() {
     return {
-      list: []
+      list: [],
+      // 请求是否成功，请求执行期间显示稍等成功之后显示列表或者 暂无此类文章
+      // success: false
+      showText: "稍等"
     };
   },
   watch: {
@@ -46,7 +51,9 @@ export default {
     // 我们要做的事就是页面地址发生改变的时候 获取对应的文章列表
     "$route.fullPath": {
       handler(newValue, oldValue) {
-        // console.log(this.$route);
+        console.log(this.type);
+
+        console.log(this.$route.params.type);
         // setTimeout(() => {
         //   console.log('更新文章数据')
         //   this.list = [1, 2, 3]
@@ -57,22 +64,34 @@ export default {
         // 当地址只有 '/xx?sort=xxx'  type = xx   sort = xxx
         // const { $route } = this;
         //  /frontend ---> /frontend?sort=popular  不能发请求重复了
-        console.log(newValue, oldValue);
+        // console.log(this.$route.params.type);
+
         if (!(newValue.includes(oldValue) && newValue.includes("popular"))) {
-          this.list = [];
-          const type = this.$route.params.type || "recommended";
-          const sort = this.$route.query.sort || "popular";
-          // 请求的地址以及查询的语句都是后台提供的，我们只需要在发送请求之前获取所需要的各种信息然后发送不同的请求
-          // 一般来说页面跳转过程中获取一些信息的时候可以通过页面地址获取
-          const queryStr =
-            type === "recommended"
-              ? `isRecommended=true&sort=${sort}`
-              : `type=${type}&sort=${sort}`;
-          axios.get(`http://localhost:3000/posts?${queryStr}`).then(res => {
-            setTimeout(() => {
-              this.list = res.data;
-            }, 500);
-          });
+          const { params, query } = this.$route;
+          if (
+            ["frontend", "backend", "recommended"].includes(params.type) ||
+            !params.type
+          ) {
+            this.list = [];
+            this.showText = "稍等";
+            const type = params.type || "recommended";
+            const sort = query.sort || "popular";
+            // 请求的地址以及查询的语句都是后台提供的，我们只需要在发送请求之前获取所需要的各种信息然后发送不同的请求
+            // 一般来说页面跳转过程中获取一些信息的时候可以通过页面地址获取
+            const queryStr =
+              type === "recommended"
+                ? `isRecommended=true&sort=${sort}`
+                : `type=${type}&sort=${sort}`;
+            this.success = false;
+            axios.get(`http://localhost:3000/posts?${queryStr}`).then(res => {
+              setTimeout(() => {
+                // this.success = true;
+                this.list = res.data;
+              }, 500);
+            });
+          } else {
+            this.showText = "暂无此类文章";
+          }
         }
       },
       immediate: true

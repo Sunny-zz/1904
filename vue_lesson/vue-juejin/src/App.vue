@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <Header />
+    <!-- <div>
+      <router-link :to="{ name: 'home' }">错误示范</router-link>
+    </div> -->
     <router-view />
   </div>
 </template>
