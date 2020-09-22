@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img @click="back" alt="Vue logo" src="../assets/logo.png" />
   </div>
 </template>
 
@@ -8,6 +8,16 @@
 // @ is an alias to /src
 
 export default {
-  name: "Home"
-};
+  name: 'Home',
+  methods: {
+    back() {
+      this.$router.back()
+    }
+  }
+}
 </script>
+<style>
+.home {
+  height: 2000px;
+}
+</style>

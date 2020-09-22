@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <!-- <transition name="fade" mode="out-in"> -->
+    <router-view />
+    <!-- </transition> -->
   </div>
 </template>
 
@@ -28,5 +30,14 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s linear;
 }
 </style>
