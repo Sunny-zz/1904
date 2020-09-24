@@ -5,7 +5,7 @@ import App from "./App.vue";
 
 // Vue.use(ElementUI);
 
-import { Button, Switch, Link } from "element-ui";
+import { Button, Switch, Link, Message } from "element-ui";
 
 // Vue.component(Button.name, Button);
 // Vue.component(Switch.name, Switch);
@@ -13,6 +13,9 @@ import { Button, Switch, Link } from "element-ui";
 Vue.use(Button);
 Vue.use(Switch);
 Vue.use(Link);
+// 将 Message 方法 添加到整个 vue 的原型对象内，也就是整个项目内都可以使用  this.$message 访问
+
+Vue.prototype.$message = Message;
 
 Vue.config.productionTip = false;
 

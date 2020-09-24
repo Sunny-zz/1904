@@ -149,6 +149,13 @@ export default {
   <button :style="`background-color: ${color}`" class="btn">按钮</button>
   ```
 
+###### vue 组件的插槽
+
+当父组件使用子组件的时候，向子组件的开始和结束标签之间传递内容，我们将这个内容称为插槽(slot)
+
+- 普通插槽
+- 具名插槽，语法的简写
+
 ###### vue 的模板语法
 
 我们在介绍 prop 的时候就已经使用了 vue 的模板语法。在 template 中嵌入 js。
@@ -517,10 +524,24 @@ router-view 组件代表整个路由，使用 router-link 组件进行路由跳�
 - 给子组件设置 ref
 - 父组件内使用 \$children 可以获取所有子组件的实例组成的数组
 - 子组件内使用 \$parent 获取父组件实例
+- 插槽(slot)
+- 在组建上使用 v-model 指令，其实就是相当于将 props(:value) 和 自定义事件 (@input) 简化了. input 事件就是修改 value 的方法
 
-兄弟组件
+  兄弟组件
 
 - 将兄弟间需要相互使用的 data 共享到父组件内，那么兄弟之间的交互就变成了父子之前的交互了
+
+###### vue 的常用 ui 库，element-ui
+
+普通的安装方式
+
+- 安装 `npm i element`
+- 使用
+  - 完全引入(不推荐)，直接将 element-ui 和他的 css 导入到 main.js，并且使用 Vue.use 方法将 element-ui 的所有组件，创建成项目全局的组件
+  - 按需引入
+    - 安装 babel-plugin-component 插件，辅助按需引入
+    - 在项目根目录下的 .babel.config.js 添加一项 plugins 配置
+    - 在 main.js 中导入所需要的组件，并使用 Vue.use 方法组件创建成项目全局的组件
 
 ###### 小问题
 
