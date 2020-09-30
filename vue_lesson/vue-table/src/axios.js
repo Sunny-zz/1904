@@ -12,4 +12,5 @@ const $http = config => {
 
   return axios(config);
 };
+
 export { $http };

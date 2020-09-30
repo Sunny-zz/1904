@@ -5,10 +5,9 @@
     <div>
       <el-button @click="showInfo">el-button</el-button>
     </div>
-
     <ul
       class="infinite-list list"
-      style="overflow:auto"
+      style="overflow: auto"
       v-infinite-scroll="load"
       :infinite-scroll-distance="10"
       :infinite-scroll-delay="1000"
@@ -24,13 +23,30 @@
     ></el-tree>
     <!-- 懒加载的树 -->
     <el-tree :props="props" :load="loadNode" lazy> </el-tree>
+    <hr />
+    <hr />
+    <ArticleList />
+    <hr />
+    <hr />
+    <EditTable />
+    <hr />
+    <hr />
+    <Box />
   </div>
 </template>
 
 <script>
 // const articles = [{ id: "1", title: "asgdkjg" }];
+import ArticleList from "./components/ArticleList";
+import EditTable from "./components/EditTable";
+import Box from "./components/Box";
 export default {
   name: "app",
+  components: {
+    EditTable,
+    ArticleList,
+    Box
+  },
   data() {
     return {
       count: 10,
@@ -133,7 +149,7 @@ export default {
     // 只要节点前有三角(非叶子节点)点击就会触发 loadNode 方法
     // 而且该方法内需要调用 resolve(loadNode 的第二个参数) 函数，给函数传递当前目录的数组
     loadNode(node, resolve) {
-      console.log("加载节点方法触发了", node);
+      // console.log("加载节点方法触发了", node);
       if (node.level === 0) {
         resolve([{ name: "region" }]);
       }
