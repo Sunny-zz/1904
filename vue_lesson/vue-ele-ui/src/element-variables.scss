@@ -1,0 +1,12 @@
+/* 改变主题色变量 */
+$--color-primary: teal;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+// @import 导入其他的样式文件
+
+// 因为 element ui 底层就是使用的 scss 扩展样式，那么我们想要覆盖的话就需要使用新的 scss 文件覆盖。
+// 但是 vue 并不支持 scss 语法
+// 所以需要下载 sass-loader 以及 node-sass  编译工具，编译 scss 文件

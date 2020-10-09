@@ -32,6 +32,16 @@
     <hr />
     <hr />
     <Box />
+    <hr>
+    <hr>
+    <div class="block">
+    <span class="demonstration">默认</span>
+    <el-date-picker
+      v-model="value1"
+      type="date"
+      placeholder="选择日期">
+    </el-date-picker>
+  </div>
   </div>
 </template>
 
@@ -50,6 +60,7 @@ export default {
   data() {
     return {
       count: 10,
+      value1: '',
       data: [],
       // 设置目录文字和子目录对应的属性名
       defaultProps: {

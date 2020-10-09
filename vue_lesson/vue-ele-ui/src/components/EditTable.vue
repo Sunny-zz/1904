@@ -96,4 +96,9 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+  .box{
+    width: 200px;
+    height: 200px;
+  }
+</style>
