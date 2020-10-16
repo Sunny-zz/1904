@@ -15,6 +15,9 @@
     <StylusDemo />
     <hr />
     <FlexDemo />
+    <hr />
+    <h3>测试 flex</h3>
+    <FlexDemo1 />
   </div>
 </template>
 <script>
@@ -23,6 +26,7 @@ import ScssDemo from './components/ScssDemo'
 import LessDemo from './components/LessDemo'
 import StylusDemo from './components/StylusDemo'
 import FlexDemo from './components/FlexDemo'
+import FlexDemo1 from './components/FlexDemo1'
 export default {
   name: 'App',
   components: {
@@ -30,7 +34,8 @@ export default {
     ScssDemo,
     LessDemo,
     StylusDemo,
-    FlexDemo
+    FlexDemo,
+    FlexDemo1
   }
   // data() {
   //   return {
