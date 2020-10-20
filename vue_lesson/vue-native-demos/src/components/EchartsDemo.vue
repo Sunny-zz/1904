@@ -3,7 +3,7 @@
     <div v-if="fruits.length">
       <div id="main"></div>
       <!-- 点击更新数据获取洗的 fruits 数组，展示对应的柱状图 -->
-      <button>更新数据</button>
+      <button @click="update">更新数据</button>
     </div>
     <div v-else class="loading">请稍等，精彩稍后继续</div>
   </div>
@@ -53,9 +53,12 @@ export default {
   },
   updated() {
     // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main'))
-    // // 绘制图表
-    myChart.setOption({
+    if (!this.myChart) {
+      this.myChart = echarts.init(document.getElementById('main'))
+      console.log('11111')
+    }
+    // 绘制图表
+    this.myChart.setOption({
       title: {
         text: 'ECharts 入门示例'
       },
@@ -79,6 +82,32 @@ export default {
         }
       ]
     })
+  },
+  methods: {
+    update() {
+      this.fruits = [
+        {
+          name: '菠萝',
+          num: 200
+        },
+        {
+          name: '葡萄',
+          num: 100
+        },
+        {
+          name: '苹果',
+          num: 300
+        },
+        {
+          name: '西红柿',
+          num: 190
+        },
+        {
+          name: '香蕉',
+          num: 500
+        }
+      ]
+    }
   }
 }
 </script>

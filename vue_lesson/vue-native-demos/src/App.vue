@@ -5,6 +5,9 @@
     <hr />
     <h3>在 vue 中使用 echarts</h3>
     <EchartsDemo />
+    <hr />
+    <h3>大数据说明一切</h3>
+    <DigitalCityDemo />
   </div>
 </template>
 <script>
@@ -15,11 +18,13 @@
 // 安装包的方式目前来说会影响项目成品的大小
 import SwiperDemo from './components/SwiperDemo'
 import EchartsDemo from './components/EchartsDemo'
+import DigitalCityDemo from './components/DigitalCityDemo'
 export default {
   name: 'App',
   components: {
     SwiperDemo,
-    EchartsDemo
+    EchartsDemo,
+    DigitalCityDemo
   }
 }
 </script>
