@@ -1,7 +1,7 @@
 // 创建 vuex 的 store 仓库
 import Vuex from 'vuex'
 import Vue from 'vue'
-
+import {ADD ,CHANGE} from './mutation-types'
 // 一. 导入 vuex 和 vue 使用 Vue 的 use 方法将  vuex 做成全局
 Vue.use(Vuex)
 
@@ -11,7 +11,8 @@ const store = new Vuex.Store({
   // 1. state 放组件共享的数据
   state: {
     // 在这里放的就是共享的组件数据
-    num: 2000
+    num: 2000,
+    arr:[]
   },
   // 2. mutations 放修改 store 内数据的方法
   // 修改方法默认接收 state 作为第一个参数
@@ -22,12 +23,20 @@ const store = new Vuex.Store({
 
   // 想要修改共享数据的话，直接对 state 内的数据进行修改即可
   mutations:{
-    add(state){
+    [ADD](state){
       state.num++
     },
-    change(state,payload){
+    [CHANGE](state,payload){
       // console.log(payload);
       state.num = payload.newNum
+    },
+    updateArr(state,payload){
+      console.log('要修改 arr');
+      //mutation 函数只能是同步函数不能包含异步操作
+      // setTimeout(() => {
+      //   state.getArr = [1,2,3]
+      // }, 1000);
+      state.arr = payload.res
     }
   }
 })
