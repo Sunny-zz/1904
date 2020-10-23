@@ -2,18 +2,22 @@
   <div>
     <h3>我是父组件 2</h3>
     <p>展示 store 内共享的数据: {{ num }}</p>
-    <hr />
     <div v-if="arr.length">
       <div v-for="item in arr" :key="item">{{ item }}</div>
     </div>
     <div v-else>稍等...</div>
+    <h4>我的子组件</h4>
+    <Son2 />
   </div>
 </template>
 <script>
 import { mapMutations, mapState } from 'vuex'
-
+import Son2 from './Son2'
 export default {
   name: 'Parent2',
+  components: {
+    Son2
+  },
   // mapState 的作用就是将 store 内的某些数据映射成组件的 computed
   // mapState 函数会返回一个对象，对象内是想要的计算属性
   data() {
@@ -49,13 +53,21 @@ export default {
   },
   created() {
     // 触发 store 内的 getArr mutation
-    setTimeout(() => {
-      // this.$store.commit({
-      //   type: 'updateArr',
-      //   res: [1, 2, 3]
-      // })
-      this.updateArr({ res: [1, 2, 3] })
-    }, 1000)
+    // setTimeout(() => {
+    //   // this.$store.commit({
+    //   //   type: 'updateArr',
+    //   //   res: [1, 2, 3]
+    //   // })
+    //   this.updateArr({ res: [25, 42, 30] })
+    // }, 1000)
+    // 只需要触发 action 即可
+    // this.$store.dispatch('updateArr')
+    // 触发 action 也可以写成
+    this.$store.dispatch({
+      type: 'updateArr',
+      // 随便测试了个参数  id
+      id: 1
+    })
   },
   methods: {
     // 只能映射成 methods 才带 commit 功能

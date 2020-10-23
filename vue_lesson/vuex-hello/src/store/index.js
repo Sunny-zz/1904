@@ -38,6 +38,56 @@ const store = new Vuex.Store({
       // }, 1000);
       state.arr = payload.res
     }
+  },
+  actions:{
+    // 只要有 action 函数就会有对应的 mutation 函数，所以名称一般写成重名的
+    // action 函数默认接受一个 context 作为参数 context 是一个对象，对象下有 commit 方法 以及 store 内的 state
+    // 当没有异步操作的时候也可以设置 action 函数
+    updateArr({commit},payload){
+      console.log(payload.id);
+      setTimeout(() => {
+        commit({type: 'updateArr',res: [11,22,30]})
+      }, 2000);
+    }
+  },
+  // store 的计算属性 getters
+
+  getters: {
+    // getters
+    // getters 内的函数的第一个参数默认接收 state 作为参数
+    // getters 内的函数的第二个参数是 store 的所有 getters 
+    // 下面的 sum 是求和计算属性
+    sum(state,getters){
+      console.log(getters);
+      return state.arr.reduce((res,ele)=> res +=ele,0)
+    },
+    // 下面的 getNum 是获取对应的某个 num , 跟给定的值最接近的那个数
+    // 做此功能需要组件内传递限定值
+    // 但是默认 getters 的函数是不能接收组件内传递参数的，想要传递话，需要将 getters 函数写成 返回一个函数的函数 ,再返回的函数内接收参数，而且返回的函数的返回值是最终的计算属性
+    getNum(state){
+      // 20    [11,22,30]      绝对值  Math.abs(x)
+      return (limitNum)=> {
+        const arr = state.arr
+        let res = arr[0]
+        if(!(res - limitNum === 0)){
+          for (let i = 1; i < arr.length; i++) {
+            if(Math.abs(arr[i]- limitNum) < Math.abs(res - limitNum) ){
+              res = arr[i]
+              if(arr[i] - limitNum === 0){
+                break
+              }
+            }
+          }
+        }
+        return res
+      }
+    }
+    // x(){
+    //   return 1000
+    // },
+    // y(){
+    //   return 10
+    // }
   }
 })
 

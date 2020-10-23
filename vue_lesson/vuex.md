@@ -29,6 +29,21 @@
     computed:{
       count: this.$store.state.count
     }
+    // vuex 提供了 mapState 辅助函数
+    // 就是将 store 内的数据使用该函数映射成组件的 computed
+    computed: {
+      ...mapState(['count']),
+      ...mapState({
+        myCont: 'count'
+      }),
+      ...mapState({
+        myCont: state => state.count,
+        myCount(state){
+          // 这个函数内可以使用 this
+          return state.count
+        }
+      })
+    }
   ```
 - 组件内修改 store 数据
   - 需要在创建 store 的时候定义好修改的方法,也就是创建 mutation 
@@ -46,3 +61,61 @@
 
 
 #### mutation 
+
+mutation 是函数，这个函数用来修改 store 内的数据的。想要调用这个 mutation 函数的话，必须使用 store 内的 commit 方法。
+创建
+  ```js
+    const store = new Vuex.Store({
+      state: {
+        num: 0
+        ...
+      },
+      mutations: {
+        // mutation 函数
+        // mutation 函数只能接收两个参数
+        // mutation 函数默认第一个参数是 state,函数内部直接对 state 内的数据进行修改
+        // mutation 函数第二个参数是 payload,修改 state 需要的额外内容,一般写成对象类型
+        // mutation 函数必须是同步函数，里面不能加异步操作
+        add(state){
+          state.num ++
+        },
+        change(state,payload){
+          state.num = payload.newNum
+        }
+      }
+    })
+  ```
+组件内使用
+  ```js
+    // 1. 使用 this.$store.commit 去提交 mutation
+    this.$store.commit('add')
+    this.$store.commit({
+      type: 'add'
+    })
+    this.$store.commit('change',{newNum: 100})
+    this.$store.commit({
+      type: 'change',
+      newNum: 100
+    })
+    // 2. vuex 提供了 mapMutations 辅助函数
+    // 就是将 store 内的 mutation 函数，映射成组件内的 method，并且内部自带 commit 功能
+
+    import  {mapMutations } from 'vuex'
+
+    export default {
+      // ...
+      methods:{
+        ...mapMutations(['add','change']),
+        ...mapMutations({
+          jia: 'add',
+          update: 'change'
+        })
+      },
+      // 如果 methods 内没有其他的方法可以写成下面的方式
+      methods: mapMutations({
+          jia: 'add',
+          update: 'change'
+        })
+      
+    }  
+  ```

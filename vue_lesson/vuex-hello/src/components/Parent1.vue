@@ -4,11 +4,14 @@
     <p>展示 store 内共享的数据: {{ num }}</p>
     <button @click="jia">修改</button>
     <button @click="gai({ newNum: 10000 })">修改成固定值 10000</button>
+    <h4>我的子组件1</h4>
+    <Son1 />
   </div>
 </template>
 <script>
 import { ADD, CHANGE } from '../store/mutation-types'
 import { mapMutations } from 'vuex'
+import Son1 from './Son1'
 // 导入 mapMutations 函数用来辅助组件提交 mutation
 // 作用其实就是将 store 内的 mutation 函数映射到组件内，当作组件的 method
 // mapMutations 函数调用之后会返回一个对象，对象内存储了一些方法
@@ -17,7 +20,10 @@ export default {
   name: 'Parent1',
   // created() {
   //   console.log(this.$store.state.num)
-  // }
+  // },
+  components: {
+    Son1
+  },
   computed: {
     num() {
       return this.$store.state.num
