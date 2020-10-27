@@ -12,7 +12,8 @@ const store = new Vuex.Store({
   state: {
     // 在这里放的就是共享的组件数据
     num: 2000,
-    arr:[]
+    arr:[],
+    testNum: 100
   },
   // 2. mutations 放修改 store 内数据的方法
   // 修改方法默认接收 state 作为第一个参数
@@ -37,6 +38,12 @@ const store = new Vuex.Store({
       //   state.getArr = [1,2,3]
       // }, 1000);
       state.arr = payload.res
+    },
+    changeTestNum(state,payload){
+      // 异步操作不允许
+      setTimeout(() => {
+        state.testNum = payload.newNum
+      }, 1000);
     }
   },
   actions:{

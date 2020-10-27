@@ -4,6 +4,7 @@
     <!-- 我要展示 store 内的数据 arr 的求和结果 -->
     <div>{{ sum }}</div>
     <div>展示某个限定的数: 和30最接近的数 ---> {{ getNum(30) }}</div>
+    <div>{{ testNum }}</div>
   </div>
 </template>
 <script>
@@ -20,11 +21,14 @@ export default {
     // limitNum() {
     //   return this.$store.getters.getNum(30)
     // }
-    ...mapGetters(['sum', 'getNum'])
+    ...mapGetters(['sum', 'getNum']),
     // ...mapGetters({
     //   res: 'sum',
     //   limitNum: 'getNum'
     // })
+    testNum() {
+      return this.$store.state.testNum
+    }
   }
 }
 </script>

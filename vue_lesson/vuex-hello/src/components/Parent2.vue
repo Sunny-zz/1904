@@ -7,7 +7,7 @@
     </div>
     <div v-else>稍等...</div>
     <h4>我的子组件</h4>
-    <Son2 />
+    <Son2 :obj="obj" />
   </div>
 </template>
 <script>
@@ -22,7 +22,11 @@ export default {
   // mapState 函数会返回一个对象，对象内是想要的计算属性
   data() {
     return {
-      a: 10
+      a: 10,
+      obj: {
+        name: '测试',
+        age: 10
+      }
     }
   },
   computed: {
