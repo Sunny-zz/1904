@@ -8,13 +8,18 @@
     <div>
       <span>total:$ {{ total.toFixed(2) }}</span>
       <br />
-      <button>Checkout</button>
+      <button
+        :disabled="!productsInCart.length"
+        @click="checkout(productsInCart)"
+      >
+        Checkout
+      </button>
     </div>
   </div>
 </template>
 <script>
 import Product from './Product'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'ShoppingCart',
   data() {
@@ -33,7 +38,8 @@ export default {
   methods: {
     xxxx() {
       Object.assign(this.obj, { a: 1, b: 2 })
-    }
+    },
+    ...mapMutations(['checkout'])
   }
 }
 </script>

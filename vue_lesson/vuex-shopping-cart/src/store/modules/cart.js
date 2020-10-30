@@ -16,7 +16,12 @@ const cart = {
       if(!productIdsInCart.includes(id)){
         // 没买过当前点击的商品
         productIdsInCart.push(id)
-        quantityById[id] = 1
+        // quantityById[id] = 1
+        // 因为 getQuantityById 计算属性使用了 quantityById 对象做计算，那么当使用上述语法修改 quantityById 的时候  getQuantityById 并不会重新计算，所以修改方案替换成 重新赋值
+        state.cart.quantityById = {
+          ...quantityById,
+          [id] : 1
+        }
       }else{
         // 买过了
         // quantityById[id] = quantityById[id] + 1
@@ -35,6 +40,10 @@ const cart = {
         // }
         state.cart.quantityById = {...quantityById, [id]:quantityById[id] + 1}
       }
+    },
+    checkout(state){
+      state.cart.productIdsInCart = []
+      state.cart.quantityById = {}
     }
   },
   actions: { 
@@ -52,15 +61,27 @@ const cart = {
       const { productIdsInCart, quantityById  } = state.cart
       const { products }  = rootState.products
       // console.log(1);
-      return products.length  ? productIdsInCart.reduce((res, ele) => {
+      return products.length ? productIdsInCart.reduce((res, ele) => {
         res.push({ ...products.find((item) => item.id === ele), quantity: quantityById[ele] })
         return res
       }, []) : []
     },
     total(state,getters){
-      console.log(getters);
-      
+      // console.log(getters);
       return getters.productsInCart.reduce((res,ele)=> res + ele.price * ele.quantity , 0)
+    },
+    getQuantityById(state){
+      // return (id)=> {
+
+      //   const val = state.cart.quantityById[id] || 0
+      //   console.log(val);
+      //   return val
+      // }
+      
+      return id => {
+        // console.log(state.cart.quantityById[id]);
+        return state.cart.quantityById[id] || 0
+      }
     }
   },
 }
