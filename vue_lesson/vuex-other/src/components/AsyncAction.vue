@@ -7,6 +7,7 @@
     <div v-if="comments.length">
       {{ comments }}
     </div>
+    <div>组件自己的 data: {{num}}</div>
   </div>
 </template>
 <script>
@@ -19,11 +20,25 @@ export default {
       comments: (state) => state.b.comments
     })
   },
-  methods: {
-    ...mapActions(['getPosts', 'getComments'])
+  data(){
+    return {
+      num: 100
+    }
   },
-  created() {
-    this.getPosts()
+  methods: {
+    ...mapActions(['getPosts', 'getComments']),
+  },
+  async created() {
+    // this.getPosts().then(()=>{
+    //   // action 异步处理完毕，可以做其他的事了
+    //   console.log(1111)
+    // }).catch(()=>{
+    //   console.log('异步出问题了');
+    // })
+   await this.getPosts()
+  //  this.getPosts() 其实相当于 this.$dispatch('getPosts')
+  // 那么 dispatch 执行完毕之后会返回一个promise
+   console.log(1111);
   }
 }
 </script>

@@ -183,8 +183,8 @@
       axios
         .get("http://localhost:3008/posts", {
           params: {
-            _limit: 20,
-          },
+            _limit: 20
+          }
         })
         .then(function (response) {
           console.log(response);
@@ -196,7 +196,7 @@
       // https://cnodejs.org/api/v1/accesstoken
       axios
         .post("https://cnodejs.org/api/v1/accesstoken", {
-          accesstoken: "ecf878d1-6052-476a-8262-824760c7872b",
+          accesstoken: "ecf878d1-6052-476a-8262-824760c7872b"
         })
         .then(res => {
           console.log(res);
