@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+    <script>
+      // 异步解决方案   promise        async  await
+
+      async function fun1() {
+        console.log("111");
+        return "hello";
+      }
+      // var res =  fun();
+      // Promise {<fulfilled>: "hello"}
+      // Promise.resolve('hello')
+      // new Promise((resolve)=>resolve('hello'))
+
+      // console.log(res);
+      // async 将函数的返回值制作成 promise  ，
+      // await 等待后面的 promise 执行完毕拿到返回结果，其实 await 是一个表达式
+      // await 后面如果是异步的promise的话，会阻塞后面的语句，只会阻塞对应的 async 函数内部的操作
+      // async 函数内才可以使用 await
+      // async function test() {
+      //   const res = await fun();
+      //   console.log(res);
+      // }
+      // test();
+
+      // const promise = new Promise((resolve, reject) => {
+      //   // 异步操作
+      //   console.log("即将执行异步操作");
+      //   setTimeout(() => {
+      //     console.log("异步操作执行完毕");
+      //     const res = 100;
+      //     if (res === 100) {
+      //       resolve(res);
+      //     } else {
+      //       reject();
+      //     }
+      //   }, 1000);
+      // });
+      // promise.then(res => console.log(res));
+      async function fun() {
+        console.log(1111);
+        const res = await axios.get("http://localhost:3008/arr");
+        console.log(2222);
+        // console.log(res);
+      }
+      fun();
+      console.log(3333);
+    </script>
+  </body>
+</html>
