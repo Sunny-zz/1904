@@ -6,6 +6,7 @@ import './directives'
 import './filters'
 import UseDemo from './components/UseDemo.vue'
 import './plugins/title'
+import './plugins/iview.js'
 Vue.config.productionTip = false
 
 // vue 的插件功能 , 其实就是给组件添加全局功能

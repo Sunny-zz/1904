@@ -15,6 +15,7 @@ const Title = {
         //   // 标签内部的文字
         //   this.$slots.default
         // )
+        // render 方法只能返回 vnode (可以是一个组件，也可以是 h 创建的) 不能返回 html 标签，这里不支持 jsx 语法
         return createElement(
           // 标签名称
           `h${this.level}`,

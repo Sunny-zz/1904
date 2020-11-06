@@ -10,7 +10,6 @@ export default {
         <a href='#'>{this.$slots.default}</a>
       </tagName>
     )
-
     // return 可以返回两种节点值   1. vnode    2. html 标签
   },
   props: {
