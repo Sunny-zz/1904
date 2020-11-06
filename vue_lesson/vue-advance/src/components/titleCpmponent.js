@@ -1,5 +1,7 @@
 
 // 创建函数式组件
+// 1. Vue.component 方法创建函数组件，这种创建出来的组件是全局组件
+// 2. 直接在 js 文件内写一个对象，对象内包含一个 render 方法即可，render 方法必须返回 html 节点
 const Title = {
   install: function (Vue) {
     Vue.component('Title', {
