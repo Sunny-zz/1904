@@ -1,6 +1,8 @@
 <template>
   <div class="cascader-wrap" v-click-outside="close">
-    <div class="cascader-title" @click="toggle"></div>
+    <div class="cascader-title" @click="toggle">
+      <span>{{ showValue }}</span>
+    </div>
     <div v-if="isVisible" class="cascader-content">
       <!-- <div class="content-list">
         <div
@@ -16,7 +18,14 @@
           {{ item.label }}
         </div>
       </div> -->
-      <CascaderItem :listData="data" v-if="data.length" />
+      <CascaderItem
+        :listData="data"
+        v-if="data.length"
+        :change="change"
+        :value="value"
+        :level="level"
+        :props="props"
+      />
     </div>
   </div>
 </template>
@@ -29,20 +38,35 @@ export default {
     data: {
       type: Array,
       default: () => []
+    },
+    value: {
+      type: Array,
+      default: () => []
+    },
+    props: {
+      type: Object,
+      default: () => ({
+        lebel: 'label',
+        children: 'children'
+      })
     }
   },
   data() {
     return {
       // currentItem: null,
-      isVisible: false
+      isVisible: false,
+      level: 0
     }
   },
-  // computed: {
-  //   listData() {
-  //     const { currentItem } = this
-  //     return currentItem && currentItem.children ? currentItem.children : []
-  //   }
-  // },
+  computed: {
+    // listData() {
+    //   const { currentItem } = this
+    //   return currentItem && currentItem.children ? currentItem.children : []
+    // }
+    showValue() {
+      return this.value.map((item) => item[this.props.label]).join('/')
+    }
+  },
   components: {
     CascaderItem
   },
@@ -81,24 +105,30 @@ export default {
     // })
     // click-outside
   },
-
   methods: {
     toggle() {
+      console.log('1111')
+
       this.isVisible = !this.isVisible
     },
     close() {
       this.isVisible = false
+    },
+    change(newValue) {
+      // 这段代码就是修改了 selectedValue 修改成  newValue
+      // 相当于在父组件执行  this.selectedValue = newValue
+      this.$emit('input', newValue)
     }
   }
 }
 </script>
 <style>
 .cascader-wrap {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .cascader-title {
-  width: 200px;
-  height: 30px;
+  width: 1000px;
+  min-height: 30px;
   border: 2px solid #ccc;
   user-select: none;
 }

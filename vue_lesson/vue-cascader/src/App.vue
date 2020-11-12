@@ -1,92 +1,103 @@
 <template>
   <div>
     <h2>级联选择器组件</h2>
-    <Cascader :data="data" v-if="show" />
+    <Cascader
+      :data="data"
+      v-if="show"
+      v-model="selectedValue"
+      :props="defaultProps"
+    />
+    <!-- 使用了 v-model 做了简化操作 -->
+    <!-- 简化了一下内容 -->
+    <!-- :value='selectedValue' @input='(newValue)=> selectedValue= newValue' -->
     <button @click="show = !show">测试</button>
-    <CascaderItem />
   </div>
 </template>
 <script>
 import Cascader from './components/Cascader'
-import CascaderItem from './components/CascaderItem'
 export default {
   name: 'App',
   data() {
     return {
       show: true,
+      // 我们在 cascader 组件内点击每一级别的时候获取到的对象都需要展示给用户，而且用户还可以设置默认值
+      selectedValue: [],
       data: [
         {
-          label: '一级 1',
-          children: [
+          name: '一级 1',
+          list: [
             {
-              label: '二级 1-1',
-              children: [
+              name: '二级 1-1',
+              list: [
                 {
-                  label: '三级 1-1-1'
+                  name: '三级 1-1-1'
                 }
               ]
             },
             {
-              label: '二级 1-2',
-              children: [
+              name: '二级 1-2',
+              list: [
                 {
-                  label: '三级 1-2-1'
+                  name: '三级 1-2-1'
                 }
               ]
             }
           ]
         },
         {
-          label: '一级 2',
-          children: [
+          name: '一级 2',
+          list: [
             {
-              label: '二级 2-1',
-              children: [
+              name: '二级 2-1',
+              list: [
                 {
-                  label: '三级 2-1-1'
+                  name: '三级 2-1-1'
                 }
               ]
             },
             {
-              label: '二级 2-2',
-              children: [
+              name: '二级 2-2',
+              list: [
                 {
-                  label: '三级 2-2-1'
+                  name: '三级 2-2-1'
                 }
               ]
             }
           ]
         },
         {
-          label: '一级 3',
-          children: [
+          name: '一级 3',
+          list: [
             {
-              label: '二级 3-1',
-              children: [
+              name: '二级 3-1',
+              list: [
                 {
-                  label: '三级 3-1-1'
+                  name: '三级 3-1-1'
                 }
               ]
             },
             {
-              label: '二级 3-2',
-              children: [
+              name: '二级 3-2',
+              list: [
                 {
-                  label: '三级 3-2-1'
+                  name: '三级 3-2-1'
                 }
               ]
             }
           ]
         },
         {
-          label: '一级 4'
+          name: '一级 4'
         }
-      ]
+      ],
+      defaultProps: {
+        label: 'name',
+        children: 'list'
+      }
     }
   },
   components: {
-    Cascader,
-    CascaderItem
+    Cascader
   }
 }
 </script>
