@@ -66,6 +66,7 @@ export default {
       // 如果 data 发生了改变，那么 list 就需要重新计算
       // 所以 list 的计算需要依赖 data ，但是如果依然依赖的是总的 data 的话，那就有需要进行 二叉树遍历了
       // 恰好组件自己的 listData 就是父组件传递过来的 data 的部分数据，数据里面就有我们需要的
+      // console.log(listData)
       if (value[level]) {
         // 先要判断 value 内是否存在内容 因为 value 初始是空的
         // 如果存在了去 listData 里面找对应 id 的那条数据

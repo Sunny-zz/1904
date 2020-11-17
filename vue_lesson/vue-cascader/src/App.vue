@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>级联选择器组件</h2>
+    <!-- data.sync 相当于给子组件传递一个 data props 以及一个自定义事件 update:data 该事件就是修改 data 的方法 -->
     <Cascader
       :data.sync="data"
       v-if="show"
