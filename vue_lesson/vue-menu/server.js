@@ -2,7 +2,8 @@
 // express node 的包 快速搭建服务器
 
 // router  vuex  elementui 插件
-//  babel(默认选了的不需要管)   express(依赖)
+// babel(默认选了的不需要管)   express(依赖)
+// 前端全栈
 const express = require("express");
 
 const app = express();
@@ -15,17 +16,15 @@ app.all("*", (req, res, next) => {
   res.header("Content-Type", "application/json;charset=utf-8");
   next();
 });
-app.get("/menus", (req, res) => {
+app.post("/menus", (req, res) => {
+  // 接收前端传递过的用户数据
   res.json({
     menuList: [
       { pid: -1, name: "购物车", id: 1, auth: "cart" },
-      { pid: 1, name: "购物车列表", id: 4, auth: "cart-list" },
-      { pid: 4, name: "彩票", id: 5, auth: "lottery" },
-      { pid: 5, name: "彩票1", id: 7, auth: "lottery1" },
-      { pid: 5, name: "彩票2", id: 8, auth: "lottery2" },
-      { pid: 4, name: "商品", id: 6, auth: "product" },
-      { pid: -1, name: "商店", id: 2, auth: "shop" },
-      { pid: -1, name: "个人中心", id: 3, auth: "store" }
+      { pid: 1, name: "购物车列表", id: 4, auth: "cartlist" },
+
+      { pid: -1, name: "商店", id: 2, auth: "store" },
+      { pid: -1, name: "个人中心", id: 3, auth: "me" }
     ]
   });
 });

@@ -1,14 +1,12 @@
 <template>
-  <div id="app">
+  <div>
+    <h2>购物车页面</h2>
     <router-view></router-view>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'app'
+  name: 'Cart'
 }
 </script>
-
-<style>
-</style>
+<style></style>

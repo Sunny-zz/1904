@@ -24,13 +24,13 @@
   </el-menu>
 </template>
 <script>
-import MenuItem from './MenuItem'
+import MenuItem from "./MenuItem";
 export default {
-  name: 'Menu',
-  props: ['menuTree'],
+  name: "Menu",
+  props: ["menuTree"],
   components: {
     MenuItem
   }
-}
+};
 </script>
 <style></style>

@@ -1,7 +1,8 @@
 import Vue from "vue";
-import { Menu, MenuItem, MenuItemGroup, Submenu } from "element-ui";
+import { Menu, MenuItem, Submenu, Input, Button } from "element-ui";
 
 Vue.use(Menu);
 Vue.use(MenuItem);
-Vue.use(MenuItemGroup);
 Vue.use(Submenu);
+Vue.use(Input);
+Vue.use(Button);

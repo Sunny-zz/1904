@@ -1,19 +1,22 @@
 <template>
-  <el-submenu :index="menu.id.toString()">
+  <el-submenu v-if="menu.children" :index="menu.id.toString()">
     <template slot="title">
-      <span>{{ menu.name }}</span>
+      <!-- /cart -->
+      <!-- /cart/cartlist -->
+      <router-link tag="span" :to="{ name: menu.auth }">
+        <span>{{ menu.name }}</span>
+      </router-link>
     </template>
     <template v-for="(menu, index) in menu.children">
-      <el-menu-item
-        v-if="!menu.children"
-        :key="index"
-        :index="index.toString()"
-      >
-        {{ menu.name }}
-      </el-menu-item>
-      <MenuItem :menu="menu" :key="index" v-else />
+      <!-- 如果 item 接收的 menu 对象内有 children 的话，需要继续循环自己，没有的话什么都不做 -->
+      <MenuItem :menu="menu" :key="index" />
     </template>
   </el-submenu>
+  <el-menu-item v-else :index="menu.id.toString()">
+    <router-link tag="span" :to="{ name: menu.auth }">
+      <span>{{ menu.name }}</span>
+    </router-link>
+  </el-menu-item>
 </template>
 <script>
 export default {
