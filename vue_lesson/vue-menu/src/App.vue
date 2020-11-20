@@ -6,7 +6,10 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  created() {
+    // 去本地浏览器获取 sessionStorage
+  }
 }
 </script>
 

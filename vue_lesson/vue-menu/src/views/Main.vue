@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-view></router-view>
     <Menu :menuTree="menuTree" />
   </div>
 </template>
@@ -9,9 +10,6 @@ export default {
   name: 'Main',
   components: {
     Menu
-  },
-  created() {
-    this.$store.dispatch('getMenu')
   },
   computed: {
     menuTree() {

@@ -3,7 +3,7 @@
     <template slot="title">
       <!-- /cart -->
       <!-- /cart/cartlist -->
-      <router-link tag="span" :to="{ name: menu.auth }">
+      <router-link tag="a" :to="{ name: menu.auth }">
         <span>{{ menu.name }}</span>
       </router-link>
     </template>
@@ -13,7 +13,7 @@
     </template>
   </el-submenu>
   <el-menu-item v-else :index="menu.id.toString()">
-    <router-link tag="span" :to="{ name: menu.auth }">
+    <router-link tag="a" :to="{ name: menu.auth }">
       <span>{{ menu.name }}</span>
     </router-link>
   </el-menu-item>

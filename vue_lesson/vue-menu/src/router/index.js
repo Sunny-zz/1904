@@ -1,12 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Main from "../views/Main.vue";
-import Cart from "../views/Cart.vue";
-import Store from "../views/Store.vue";
-import Me from "../views/Me.vue";
-import CartList from "../views/CartList.vue";
-import Lottery from "../views/Lottery.vue";
-import Goods from "../views/Goods.vue";
+// import Cart from "../views/Cart.vue";
+// import Store from "../views/Store.vue";
+// import Me from "../views/Me.vue";
+// import CartList from "../views/CartList.vue";
+// import Lottery from "../views/Lottery.vue";
+// import Goods from "../views/Goods.vue";
 import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
@@ -18,49 +18,49 @@ Vue.use(VueRouter);
 // 该路由s 需要先跟后台交流一下，到底总共有多少页面，页面之间的关系什么样，然后创建
 export const authRoutes = [
   {
-    path: "/cart",
+    path: "cart",
     name: "cart",
-    // component: () => import("../views/Cart.vue")
-    component: Cart,
+    component: () => import("../views/Cart.vue"),
+    // component: Cart,
     children: [
       {
         // /cart/cartlist
         path: "cartlist",
         name: "cartlist",
-        // component: () => import("../views/CartList.vue")
-        component: CartList,
+        component: () => import("../views/CartList.vue"),
+        // component: CartList,
         children: [
           {
             path: "lottery",
             name: "lottery",
-            // component: () => import("../views/Lottery.vue")
-            component: Lottery
+            component: () => import("../views/Lottery.vue")
+            // component: Lottery
           },
           {
             path: "goods",
             name: "goods",
-            // component: () => import("../views/Lottery.vue")
-            component: Goods
+            component: () => import("../views/Goods.vue")
+            // component: Goods
           }
         ]
       }
     ]
   },
   {
-    path: "/store",
+    path: "store",
     name: "store",
-    // component: () => import("../views/Cart.vue")
-    component: Store
+    component: () => import("../views/Store.vue")
+    // component: Store
   },
   {
-    path: "/me",
+    path: "me",
     name: "me",
-    // component: () => import("../views/Cart.vue")
-    component: Me
+    component: () => import("../views/Me.vue")
+    // component: Me
   }
 ];
 
-const routes = [
+export const routes = [
   {
     path: "/login",
     name: "login",
@@ -68,8 +68,15 @@ const routes = [
   },
   {
     path: "/",
-    name: "Main",
-    component: Main
+    // name: "Main",
+    component: Main,
+    children: [
+      {
+        path: "",
+        name: "Main",
+        component: () => import("../views/Home.vue")
+      }
+    ]
   },
   {
     path: "*",

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button class="set">存储</button>
+    <button class="get">获取</button>
+    <button class="del">删除</button>
+    <h2>浏览器的本地存储</h2>
+    <script>
+      // 存储登录状态
+      // sessionStorage
+      // localStorage
+      // key（属性名） :  value (属性值)
+      document.querySelector(".set").onclick = function () {
+        // sessionStorage.setItem("password", JSON.stringify({ x: 123456 }));
+        // sessionStorage.setItem("username", "小张");
+        localStorage.setItem("password", JSON.stringify({ x: 123456 }));
+        localStorage.setItem("username", "小张");
+        // sessionStorage
+        // localStorage
+      };
+
+      document.querySelector(".get").onclick = function () {
+        // const pas = sessionStorage.getItem("password");
+        const pas = localStorage.getItem("password");
+        console.log(JSON.parse(pas));
+      };
+
+      document.querySelector(".del").onclick = function () {
+        // sessionStorage.removeItem("username");
+        // localStorage.removeItem("username");
+        // sessionStorage.clear();
+        localStorage.clear();
+      };
+
+      document.cookie = "username=Bill Gates";
+    </script>
+  </body>
+</html>

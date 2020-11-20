@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 // 导入默认的和命名的
-import router, { authRoutes } from "../router";
+import router, { authRoutes, routes } from "../router";
 
 Vue.use(Vuex);
 
@@ -15,7 +15,7 @@ axios.interceptors.response.use(res => {
   return res.data;
 });
 
-const getTree = list => {
+export const getTree = list => {
   const menuTree = [];
   // 因为在 getTree 方法内对 menuList 做了循环，所以可以借助 getTree 函数直接创建 auths ，但是 getTree 就是会得到两个数据，那么需要返回对象，使用的时候也要注意。
   const auths = [];
@@ -45,7 +45,7 @@ const getTree = list => {
   return { menuTree, auths };
 };
 
-const getRoutes = (routes, auths) => {
+export const getRoutes = (routes, auths) => {
   return routes.filter(route => {
     // const route = { ...e };
     if (auths.includes(route.name)) {
@@ -60,21 +60,43 @@ const getRoutes = (routes, auths) => {
 };
 export default new Vuex.Store({
   state: {
-    menuTree: []
+    menuTree: [],
+    isLogin: false
   },
   mutations: {
     getMenu(state, menus) {
       state.menuTree = menus;
+    },
+    setLogin(state) {
+      state.isLogin = true;
     }
   },
   actions: {
-    async getMenu({ commit }) {
-      const { menuList } = await axios.post("/menus", { text: "老师" });
+    async getMenu({ commit }, text) {
+      // console.log(text);
+      // console.log("1111");
+
+      const { menuList } = await axios.post("/menus", { text });
+      // console.log(menuList);
+
       const { menuTree, auths } = getTree(menuList);
       commit("getMenu", menuTree);
+      commit("setLogin");
+      sessionStorage.setItem("tree", JSON.stringify(menuTree));
+      sessionStorage.setItem("auths", JSON.stringify(auths));
+
+      // 用户登录成功 需要存储登录状态
+      // 因为刷新的时候所有用户数据都重置了   需要重新获取
+      // 1. 将数据直接存储到本地 storage
+      // 2. 一般用户登录成功后台会返回一个 token(用户的身份标识) ，将 token 存储到 本地浏览器
+
+      // console.log("222222222");
+
       // 在这还要更新一个项目的路由
       // 思考 该如何处理 authRoutes
-      router.addRoutes(getRoutes(authRoutes, auths));
+      routes[1].children.push(...getRoutes(authRoutes, auths));
+      // console.log(routes[1], getRoutes(authRoutes, auths));
+      router.addRoutes([routes[1]]);
     }
   },
   modules: {}
