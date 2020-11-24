@@ -61,7 +61,8 @@ export const getRoutes = (routes, auths) => {
 export default new Vuex.Store({
   state: {
     menuTree: [],
-    isLogin: false
+    isLogin: false,
+    btns: ["edit", "delete"]
   },
   mutations: {
     getMenu(state, menus) {
