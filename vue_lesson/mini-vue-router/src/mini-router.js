@@ -9,46 +9,52 @@
 // main.js 内引入了 router 那么所有的组件内都有
 // $router  指的是 VueRouter 类
 // $route
-import Home from "./views/Home.vue";
+
 let Vue;
 class VueRouter {
   constructor(options) {
     this.options = options;
-    // console.log(options);
-    // console.log(Vue);
-
+    // 需要动态展示的组件
+    // Vue.observable({count: 0})
+    // 根据页面地址的变化找到路由表中对应的组件
+    this.currentPath = Vue.observable({ path: "/" });
+    this.init();
+  }
+  init() {
+    this.initEvents();
+    this.initRouteMap();
+    this.initComponents();
+  }
+  initRouteMap() {
     // 制作一个路由表   {'/':Home,'/about':About}
-    // console.log(this.options.routes);
-
+    // 优化  从数组的查找变成对象的属性
     this.routeMap = this.options.routes.reduce((res, item) => {
       res[item.path] = item.component;
       return res;
     }, {});
-    // console.log(this.routeMap);
-    // 需要展示的组件
-    this.current = null;
-    // 由于 current 需要事件修改 所以 router-view 获取不到更新之后的 current，那么就展示不了页面
-    // 我们要将 current 做成响应式的数据
-    // Vue.util.defineReactive(this.current, "path", "/");
+  }
+  initEvents() {
     // 两个事件
     // 进入页面   onload
     // 页面地址栏变化   hashchange
     const self = this;
     window.addEventListener("load", function() {
-      console.log(location.hash);
-      if (location.hash === "") {
-        location.hash = "/";
+      //刷新页面或者刚进入页面的时候
+      // http://localhost:8080   http://localhost:8080/#/ --->  http://localhost:8080/#/
+      // http://localhost:8080/#/about   正常
+      // http://localhost:8080/about
+      const path = window.location.hash;
+      console.log(path);
+      if (path === "" || path === "#/") {
+        window.location.hash = "/";
+      } else {
+        self.currentPath.path = path.slice(1);
       }
-      self.current = self.routeMap[location.hash.slice(1)];
-      console.log(self.current);
     });
     window.addEventListener("hashchange", function() {
-      self.current = self.routeMap[location.hash.slice(1)];
-      console.log(self.current);
+      self.currentPath.path = window.location.hash.slice(1);
     });
-    this.initComponents();
   }
-
   initComponents() {
     const self = this;
     Vue.component("router-link", {
@@ -68,8 +74,7 @@ class VueRouter {
     });
     Vue.component("router-view", {
       render(h) {
-        console.log(self.current);
-        return h(self.current);
+        return h(self.routeMap[self.currentPath.path]);
       }
     });
   }
@@ -84,6 +89,7 @@ VueRouter.install = _Vue => {
   // Vue.prototype.$router = 用户创建的路由实例;
   // 当再次 new Vue 的时候里面也有了 $router 这个其实是不对的
   // 使用 mixins 添加 $router 属性
+
   Vue.mixin({
     beforeCreate() {
       // 所有组件都触发
@@ -93,6 +99,8 @@ VueRouter.install = _Vue => {
       // if (this) {
       // }
       // console.log(this.$router);
+      // console.log(this);
+
       if (!this.$options.router) {
         // 子组件
         if (this.$parent.$options.router) {

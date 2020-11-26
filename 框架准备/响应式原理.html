@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="text" type="text" />
+    <!-- 事件   keyup        this.value    -->
+    <h2 id="show"></h2>
+    <script>
+      // Object.defineProperty   对 对象的属性做修改 并返回修改之后的对象
+      // Object.defineProperty();
+      // const obj = {
+      //   name: "小黑"
+      // };
+      // // obj.age = 10
+      // // obj["age"] = 10;
+      // Object.defineProperty(obj, "age", {
+      //   value: 10,
+      //   //writable 可不可以修改 默认值是 false
+      //   writable: true
+      // });
+      // console.log(obj);
+      // obj.age = 11;
+      // console.log(obj);
+
+      // var o = {}; // 创建一个新对象
+
+      // 在对象中添加一个属性与数据描述符的示例
+      // Object.defineProperty(o, "a", {
+      //   value: 37,
+      //   writable: true,
+      //   // enumerable: true,
+      //   // 可以修改描述符
+      //   configurable: true
+      // });
+      // o.a = 38;
+      // console.log(o);
+
+      // // 存取描述符
+      // let bValue = "hello";
+      // Object.defineProperty(o, "b", {
+      //   get() {
+      //     return bValue;
+      //   },
+      //   set(newValue) {
+      //     bValue = newValue;
+      //   }
+      // });
+      // o.b = "hello world";
+      // console.log(o);
+
+      // Object.defineProperty(o, "a", {
+      //   value: 1,
+      //   enumerable: true
+      // });
+      // Object.defineProperty(o, "b", {
+      //   value: 2,
+      //   enumerable: false
+      // });
+      // Object.defineProperty(o, "c", {
+      //   value: 3,
+      //   enumerable: true
+      // });
+
+      // console.log(o);
+
+      // const oo = {
+      //   a: 1,
+      //   b: 2,
+      //   c: 3
+      // };
+      // console.log(o.b);
+
+      // 属性遍历的时候  非枚举属性获取不到
+      // for (const key in o) {
+      //   console.log(key);
+      // }
+      // console.log(Object.keys(o));
+
+      const data = {
+        text: ""
+      };
+      const oH2 = document.getElementById("show");
+      let inputText = "";
+      Object.defineProperty(data, "text", {
+        get() {
+          return inputText;
+        },
+        set(newValue) {
+          inputText = newValue;
+          oH2.innerText = newValue;
+        }
+      });
+      document.getElementById("text").addEventListener("input", function () {
+        data.text = this.value;
+      });
+    </script>
+  </body>
+</html>
