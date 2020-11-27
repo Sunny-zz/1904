@@ -20,4 +20,5 @@
     background-color #f6f6f6
     padding 10px
     border-bottom 1px solid #ccc
+  
 </style>

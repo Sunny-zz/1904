@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Topic from "../views/Topic.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -8,6 +9,13 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home
+  },
+  // /topic/xakjsgquv66etyr128tu    /topic/xakjsgquv768765128tu
+  //
+  {
+    path: "/topic/:id",
+    name: "Topic",
+    component: Topic
   }
 ];
 
