@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Topic from "../views/Topic.vue";
+import User from "../views/User.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -16,6 +17,11 @@ const routes = [
     path: "/topic/:id",
     name: "Topic",
     component: Topic
+  },
+  {
+    path: "/user/:user_id",
+    name: "User",
+    component: User
   }
 ];
 

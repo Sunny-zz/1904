@@ -45,7 +45,12 @@
           ]"
           >{{ item | formatType }}</span
         >
-        <router-link :to="`/topic/${item.id}`">{{ item.title }}</router-link>
+        <span class="link"
+          ><router-link :to="`/topic/${item.id}`">{{
+            item.title
+          }}</router-link></span
+        >
+        <span class="time">3 个月前</span>
       </li>
     </ul>
     <div v-else>无内容</div>
@@ -133,6 +138,7 @@ export default {
         background-color #e5e5e5
         border-radius 3px
         margin-right 10px
+        flex-shrink 0
       .top , .good
         background-color #369219
         color #fff
@@ -140,5 +146,12 @@ export default {
         border 1px solid red
         color red
         background-color #fff
-
+      .link 
+        flex-grow 1
+        overflow hidden
+        white-space nowrap
+        text-overflow ellipsis
+        margin-right 20px
+      .time 
+        flex-shrink 0
 </style>

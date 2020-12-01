@@ -14,8 +14,8 @@
 .container 
   width 960px
   border-radius 5px
-  border 1px solid #ccc
   margin 30px auto
+  background-color: #fff;
   .container-head 
     background-color #f6f6f6
     padding 10px
