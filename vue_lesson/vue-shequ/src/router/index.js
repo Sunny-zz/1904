@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Topic from "../views/Topic.vue";
 import User from "../views/User.vue";
+import MoreTopic from "../views/MoreTopic.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -19,9 +20,16 @@ const routes = [
     component: Topic
   },
   {
-    path: "/user/:user_id",
+    // 动态路由
+    // :username 动态路由参数
+    path: "/user/:username",
     name: "User",
     component: User
+  },
+  {
+    path: "/user/:username/topics",
+    name: "MoreTopic",
+    component: MoreTopic
   }
 ];
 

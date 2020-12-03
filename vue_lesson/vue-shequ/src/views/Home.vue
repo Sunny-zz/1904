@@ -13,15 +13,38 @@
         <router-link @click.native="handleTab" to="/?tab=ask">问答</router-link>
         <router-link @click.native="handleTab" to="/?tab=job">招聘</router-link> -->
         <router-link
-          :class="{ 'router-link-active': !$route.query.tab }"
+          :class="{
+            'router-link-active':
+              !$route.query.tab || $route.query.tab === 'all'
+          }"
           exact
           to="/?tab=all"
           >全部</router-link
         >
-        <router-link exact to="/?tab=good">精华</router-link>
-        <router-link exact to="/?tab=share">分享</router-link>
-        <router-link exact to="/?tab=ask">问答</router-link>
-        <router-link exact to="/?tab=job">招聘</router-link>
+        <router-link
+          :class="{ 'router-link-active': $route.query.tab === 'good' }"
+          exact
+          to="/?tab=good"
+          >精华</router-link
+        >
+        <router-link
+          :class="{ 'router-link-active': $route.query.tab === 'share' }"
+          exact
+          to="/?tab=share"
+          >分享</router-link
+        >
+        <router-link
+          :class="{ 'router-link-active': $route.query.tab === 'ask' }"
+          exact
+          to="/?tab=ask"
+          >问答</router-link
+        >
+        <router-link
+          :class="{ 'router-link-active': $route.query.tab === 'job' }"
+          exact
+          to="/?tab=job"
+          >招聘</router-link
+        >
       </div>
     </template>
     <div v-if="!articleList">请稍等</div>
@@ -54,6 +77,17 @@
       </li>
     </ul>
     <div v-else>无内容</div>
+    <!-- 分页器 -->
+    <el-pagination
+      background
+      layout="prev,pager, next"
+      :page-size="20"
+      :total="800"
+      :current-page.sync="page"
+      @current-change="changePage"
+    >
+      <!-- current-page 定义成组件的 data  修改的时候 可以使用修饰符 .sync-->
+    </el-pagination>
   </Caontainer>
 </template>
 <script>
@@ -61,6 +95,11 @@ import Caontainer from '../lauout/Container'
 import { mapActions, mapState } from 'vuex'
 
 export default {
+  data() {
+    return {
+      page: 1
+    }
+  },
   components: {
     Caontainer
   },
@@ -81,8 +120,13 @@ export default {
     '$route.query': {
       handler(newValue, oldValue) {
         // console.log(newValue, oldValue)
-        const { tab } = newValue
-        this.getArticles(tab)
+        const { tab, page } = newValue
+        console.log('地址栏的查询部分改变了')
+        if (!page) {
+          console.log('更新 page 为 1')
+          this.page = 1
+        }
+        this.getArticles({ tab, page: page || 1 })
       },
       immediate: true
     }
@@ -94,7 +138,7 @@ export default {
   //   this.getArticleList()
   // },
   methods: {
-    ...mapActions(['getArticles'])
+    ...mapActions(['getArticles']),
     // handleTab() {
     //   this.getArticleList()
     // },
@@ -103,6 +147,16 @@ export default {
     //   // console.log(this.$route)
     //   this.getArticles(tab)
     // }
+    changePage(pageNum) {
+      // this.getArticles({ tab: this.$route.query.tab, page: pageNum })
+      // 修改地址栏的地址
+      // localhost:8080    --->   localhost:8080?tab=all&page=2
+      // localhost:8080?tab=ask    localhost:8080?tab=ask&page=2
+      // localhost:8080?tab=ask&page=2    localhost:8080?tab=ask&page=3
+      const query = this.$route.query
+      const tab = query.tab ? query.tab : 'all'
+      this.$router.push(`/?tab=${tab}&page=${pageNum}`)
+    }
   }
 }
 </script>

@@ -13,7 +13,8 @@ export default new Vuex.Store({
 
     // 但是我们现在的 token 登录接口失效了  ，想要获取用户信息必须使用另外一个接口 ‘https://vue-js.com/api/v1/user/sunny-zz’
     // 输入正确 token 向后发送 https://vue-js.com/api/v1/user/sunny-zz 请求
-    userInfo: null
+    userInfo: null,
+    otherUserInfo: null
   },
   mutations: {
     getArticles(state, list) {
@@ -24,16 +25,23 @@ export default new Vuex.Store({
     },
     getUserInfo(state, userInfo) {
       state.userInfo = userInfo;
+    },
+    getOtherUserInfo(state, userInfo) {
+      state.otherUserInfo = userInfo;
     }
   },
   actions: {
-    async getArticles({ commit }, tab) {
+    async getArticles({ commit }, { tab, page }) {
       // const res = await $axios.get("/topics", {
       //   params: { page: 2, tab: "share" }
       // });
       // console.log(tab);
       commit("getArticles", null);
-      const queryStr = tab && tab !== "all" ? `?tab=${tab}` : "";
+
+      const queryStr =
+        tab && tab !== "all"
+          ? `?tab=${tab}&page=${page}&limit=20`
+          : `?tab=all&page=${page}&limit=20`;
       // console.log(queryStr);
       const res = await $axios.get(`/topics/${queryStr}`);
       // /api/topics  发的请求
@@ -58,13 +66,26 @@ export default new Vuex.Store({
     async getUserInfo({ commit }, token) {
       // 假装是后台 判断 token 对不对
       if (token === "79b3b12e-9631-467b-9210-c68449c98a35") {
-        const res = await $axios.get("/user/ab8512");
-        console.log("登陆成功");
+        const res = await $axios.get("/user/sunny-zz");
+        // console.log("登陆成功");
         localStorage.setItem("token", token);
         commit("getUserInfo", res.data);
       } else {
         alert("token 不太对");
       }
+    },
+    async getOtherUserInfo({ commit }, username) {
+      const res = await $axios.get(`/user/${username}`);
+      // console.log(res);
+      commit("getOtherUserInfo", res.data);
+    }
+  },
+  getters: {
+    // otherUserInfo 进行计算
+    recent_topics(state) {
+      // console.log(state.otherUserInfo);
+      const { otherUserInfo } = state;
+      return otherUserInfo ? otherUserInfo.recent_topics : [];
     }
   },
   modules: {}
