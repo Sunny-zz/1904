@@ -36,8 +36,7 @@ export default new Vuex.Store({
       //   params: { page: 2, tab: "share" }
       // });
       // console.log(tab);
-      commit("getArticles", null);
-
+      // commit("getArticles", null);
       const queryStr =
         tab && tab !== "all"
           ? `?tab=${tab}&page=${page}&limit=20`
@@ -51,6 +50,20 @@ export default new Vuex.Store({
       // console.log(res.data);
       commit("getArticles", res.data);
     },
+    // getArticles({ commit }, { tab, page }) {
+    //   commit("getArticles", null);
+
+    //   return new Promise(resolve, reject => {
+    //     const queryStr =
+    //       tab && tab !== "all"
+    //         ? `?tab=${tab}&page=${page}&limit=20`
+    //         : `?tab=all&page=${page}&limit=20`;
+    //     $axios.get(`/topics/${queryStr}`).then(res => {
+    //       commit("getArticles", res.data);
+    //       resolve();
+    //     });
+    //   });
+    // },
     async getArticle({ commit }, id) {
       commit("getArticle", null);
       // 请求文章的时候加上 accesstoken 参数可以得到 该文章用户是否收藏了或者文章的评论用户是否点赞了

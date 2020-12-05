@@ -1,6 +1,6 @@
 <template>
-  <Container>
-    <div v-if="article">
+  <Container v-if="article">
+    <div>
       <div>
         <h2>{{ article.title }}</h2>
         <p></p>

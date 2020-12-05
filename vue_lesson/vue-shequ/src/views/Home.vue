@@ -1,5 +1,10 @@
 <template>
-  <Caontainer>
+  <Caontainer
+    v-loading.fullscreen.lock="loading"
+    element-loading-text="拼命加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
+  >
     <template #head>
       <div class="tabs">
         <!-- @click.native  应用到组件上 相当于给组件的根元素绑定事件 -->
@@ -97,7 +102,8 @@ import { mapActions, mapState } from 'vuex'
 export default {
   data() {
     return {
-      page: 1
+      page: 1,
+      loading: false
     }
   },
   components: {
@@ -118,15 +124,20 @@ export default {
   },
   watch: {
     '$route.query': {
-      handler(newValue, oldValue) {
+      async handler(newValue, oldValue) {
         // console.log(newValue, oldValue)
         const { tab, page } = newValue
-        console.log('地址栏的查询部分改变了')
+        this.loading = true
+        // console.log('地址栏的查询部分改变了')
         if (!page) {
-          console.log('更新 page 为 1')
+          // console.log('更新 page 为 1')
           this.page = 1
         }
-        this.getArticles({ tab, page: page || 1 })
+        // this.getArticles({ tab, page: page || 1 }).then(() => {
+        //   this.loading = false
+        // })
+        await this.getArticles({ tab, page: page || 1 })
+        this.loading = false
       },
       immediate: true
     }

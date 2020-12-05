@@ -12,6 +12,7 @@
         <img :src="userInfo.avatar_url" alt="" />
         <el-button size="mini" @click="logout">退出</el-button>
       </div>
+      <router-link class="message" to="/my/messages">未读消息</router-link>
     </div>
   </header>
 </template>
@@ -85,6 +86,10 @@ export default {
         img 
           width 50px
           margin-right 20px
-        
+      .message 
+        margin-left: 200px;    
+        text-decoration: none;
+        color #fff
+
 </style>
 

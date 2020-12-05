@@ -525,7 +525,7 @@ router-view 组件代表整个路由，使用 router-link 组件进行路由跳�
 - 父组件内使用 \$children 可以获取所有子组件的实例组成的数组
 - 子组件内使用 \$parent 获取父组件实例
 - 插槽(slot)
-- 在组建上使用 v-model 指令，其实就是相当于将 props(:value) 和 自定义事件 (@input) 简化了. input 事件就是修改 value 的方法
+- 在组件上使用 v-model 指令，其实就是相当于将 props(:value) 和 自定义事件 (@input) 简化了. input 事件就是修改 value 的方法
 
   兄弟组件
 

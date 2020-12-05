@@ -14,16 +14,21 @@
       <router-link :to="{ name: 'MoreTopic' }">查看更多</router-link>
     </div>
   </div>
+  <NotFound text="该用户不存在" v-else />
 </template>
 <script>
 // import $axios from '../plugins/axios'
 import { mapState, mapActions } from 'vuex'
+import NotFound from './NotFound'
 export default {
   // data() {
   //   return {
   //     userInfo: null
   //   }
   // },
+  components: {
+    NotFound
+  },
   computed: {
     ...mapState(['otherUserInfo']),
     showCreateTopics() {
