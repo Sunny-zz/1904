@@ -9,7 +9,7 @@
 <script>
 // vue 组件间的通信
 // 父子
-// props  $parent    自定义事件    .sync  v-model   provide/inhect   $attrs  $listeners
+// props  $parent    自定义事件    .sync  v-model   provide/inject   $attrs  $listeners
 // 子父  $children
 import Parent from './components/Parent'
 import Parent1 from './components/Parent1'
