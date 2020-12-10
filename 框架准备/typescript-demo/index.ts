@@ -364,11 +364,29 @@
 // const res = createArray<string>(4, 'x')
 
 // 类型推论 可以省略 函数传递的泛型
-function createArray<T> (length: number, value: T): Array<T> {
-  let res: T[] = []
-  for (let i = 0; i < length; i++) {
-    res.push(value)
-  }
-  return res
-}
-const res = createArray(4, 'x')
+// function createArray<T> (length: number, value: T): Array<T> {
+//   let res: T[] = []
+//   for (let i = 0; i < length; i++) {
+//     res.push(value)
+//   }
+//   return res
+// }
+// const res = createArray(4, 'x')
+
+
+// 声明文件  
+// 我们要使用第三方插件  jquery 
+// import $ from 'jquery'
+// $('.box').click(function () {})
+
+// 使用 jquery 
+// 安装 jquery 之后 还需要安装他的声明文件包  @types/jquery
+// 导入方式换成下面的方式
+// import $ = require('jquery')
+// console.log($)
+// $.each([11, 22, 33], function (a, b) {
+//   console.log(a, b)
+// })
+
+
+

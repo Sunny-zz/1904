@@ -1,6 +1,8 @@
+"use strict";
 //  javascript  的数据类型 7
 //  原始的数据类型  null undefined Number Boolean String Symbol (BigInt)
 //  Object 
+exports.__esModule = true;
 // ts 需要编译之后才能正常运行在浏览器或者node环境下
 // 全局安装一个 typescript 工具  将 ts 编译成 js 文件   |  tsc index.ts    直接在文件夹内编译成 index.js 
 // 全局安装一个 ts-node 工具，可以直接在 node 环境下运行 ts 文件 |    ts-node  index.ts
@@ -262,34 +264,59 @@
 // private 私有属性 只能在类中访问
 // readonly 只读属性 可以访问不可修改
 // protected 子类可以访问
-var Person = /** @class */ (function () {
-    // 类内的属性和方法需要先定义好 类型
-    // 然后 constructor 内才能给这些属性或者方法赋值     constructor 内 赋值的属性和方法需要提前声明
-    // public name: string
-    // name: string
-    // age: number
-    function Person(name, age) {
-        this.age = age;
-        this.name = name;
-        this.age = age;
-    }
-    Object.defineProperty(Person.prototype, "name", {
-        // 类里面的存取器  属性和获取和修改
-        get: function () {
-            return '';
-        },
-        // name 修改的时候触发 set name   方法
-        set: function (value) {
-            console.log(value);
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Person.prototype.say = function () {
-        console.log(this.name);
-    };
-    return Person;
-}());
-var user = new Person('小红', 18);
-user.name = '小绿';
-console.log(user.say());
+// class Person {
+//   // 类内的属性和方法需要先定义好 类型
+//   // 然后 constructor 内才能给这些属性或者方法赋值     constructor 内 赋值的属性和方法需要提前声明
+//   // public name: string
+//   // name: string
+//   // age: number
+//   constructor(name: string, readonly age: number) {
+//     this.name = name
+//     this.age = age
+//   }
+//   // 类里面的存取器  属性和获取和修改
+//   get name () {
+//     return ''
+//   }
+//   // name 修改的时候触发 set name   方法
+//   set name (value) {
+//     console.log(value)
+//   }
+//   say () {
+//     console.log(this.name)
+//   }
+// }
+// const user: Person = new Person('小红', 18)
+// user.name = '小绿'
+// console.log(user.say())
+// 泛型 
+// 创建一个任意长度的数组，而且创建出来的数组每一项是有默认值的
+// function createArray<T> (length: number, value: T): Array<T> {
+//   let res: T[] = []
+//   for (let i = 0; i < length; i++) {
+//     res.push(value)
+//   }
+//   return res
+// }
+// const res = createArray<string>(4, 'x')
+// 类型推论 可以省略 函数传递的泛型
+// function createArray<T> (length: number, value: T): Array<T> {
+//   let res: T[] = []
+//   for (let i = 0; i < length; i++) {
+//     res.push(value)
+//   }
+//   return res
+// }
+// const res = createArray(4, 'x')
+// 声明文件  
+// 我们要使用第三方插件  jquery 
+// import $ from 'jquery'
+// $('.box').click(function () {})
+// 使用 jquery 安装 jquery 之后 还需要安装他的声明文件包  @types/jquery
+// 导入方式换成下面的方式
+var $ = require("jquery");
+var jquery_1 = require("jquery");
+console.log($, jquery_1["default"]);
+// $.each([11, 22, 33], function (a, b) {
+//   console.log(a, b)
+// })
