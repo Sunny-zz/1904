@@ -9,7 +9,7 @@
       <button @click="test">测试路由的按钮</button>
     </div>
     <hr />
-    <div>{{ str }}</div>
+    <!-- <div>{{ str }}</div> -->
     <router-link to="/?tab=all">去全部</router-link> |
     <router-link to="/?tab=ask">去问答</router-link>
   </div>
@@ -21,7 +21,7 @@ import ButtonDemo from '../components/ButtonDemo.vue'
 
 // 组件想要和 vuex 做交互，提倡使用 vuex-class 做交互，不直接在 vuex 去取一些辅助方法(mapState ...)
 // 还有一个工具 vuex-module-decorators 稍微比上面好用一点
-import { State } from 'vuex-class'
+// import { State } from 'vuex-class'
 
 // import { Route } from 'vue-router'
 // ts 的组件写法  class 语法
@@ -38,20 +38,14 @@ import { State } from 'vuex-class'
   // 注册子组件
   components: {
     ButtonDemo
-  },
-  // 组件的计算属性
-  computed: {
-    num() {
-      return this.count * this.count
-    }
   }
 })
 export default class Home extends Vue {
-  $route
+  $route!: any
   count = 100
   //  @State('str')    去store 中 找到 str  取出来给 组件类内的 str 属性
-  @State('str')
-  str
+  // @State('str')
+  // str!: string
   add() {
     this.count++
     window.console.log(222222)
@@ -69,6 +63,12 @@ export default class Home extends Vue {
   @Watch('$route.query.tab', { immediate: true })
   onTabChange(newValue: string, oldValue: string) {
     window.console.log(newValue, oldValue)
+  }
+
+  // 组件的计算属性
+
+  get num() {
+    return this.count * this.count
   }
 }
 </script>

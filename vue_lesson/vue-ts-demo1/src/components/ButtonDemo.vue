@@ -8,14 +8,9 @@ import { Component, Vue, Prop, Emit } from 'vue-property-decorator'
 
 // @Component 装饰器是装饰 ButtonDemo class 类的
 // 这个装饰器启用了 类里面的装饰器 才可用
+
+// 在这个  Component 装饰器 内使用 this ts 编译报错，但是项目正常运行  最好将使用 this 的 一些函数 放到 class 内
 @Component({
-  // 组件的生命周期钩子函数 写在 @Component 装饰器内
-  created() {
-    window.console.log('我是 created 生命周1期')
-    setTimeout(() => {
-      this.add()
-    }, 1000)
-  },
   mounted() {
     window.console.log('我是 mounted 生命周期')
   }
@@ -33,7 +28,7 @@ export default class ButtonDemo extends Vue {
   // 1. 直接在 text 后面加一个 !    2. 给text 声明一个联合类型  string | undefined
   // text: string
   @Prop(Number)
-  count: number
+  count!: number
 
   // handleClick() {
   //   // 自己组件的事
@@ -43,6 +38,14 @@ export default class ButtonDemo extends Vue {
   @Emit()
   add() {
     window.console.log(1111)
+  }
+
+  // 组件的生命周期钩子函数 写在 @Component 装饰器内
+  created() {
+    window.console.log('我是 created 生命周1期')
+    setTimeout(() => {
+      this.add()
+    }, 1000)
   }
 }
 </script>

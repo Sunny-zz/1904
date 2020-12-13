@@ -12,12 +12,15 @@
 
 
 
+#### 编译过程中遇到的常见编译错误，项目还可以正常运行
 
-
+- props 子组件获取的时候，ts  认为 props 初始化的没有赋值，就会报错， 解决方案是 给 props 添加非空断言
+- 在 @Component 内的某个函数内使用 this，ts 编译 this 认为他是 Vue，并不是组件。所以出错。 解决方案是将这些使用 this 的函数写到 class 内
+- $route  $router 使用的时候提示 this 写没有这个属性，需要在 class 内先声明，而且声明的时候得非空断言，并设置类型 类型可以设置成 any。
+- 使用一些查找类方法的时候 有时候可能查找不到，就不能直接对查找的结果进行修改。 解决方案 现获取结果 然后判断 最后在进行操作
 
 
 #### lint 格式化的一些问题
 
-- Missing space before function parentheses space-before-function-paren
-  在函数创建的时候函数名后面必须加上一个空格，但是我们的 vscode 的代码格式化都没有加空格，起冲突了。
+
 
