@@ -18,6 +18,7 @@ app.all("*", (req, res, next) => {
   res.header("Content-Type", "application/json;charset=utf-8");
   next();
 });
+// post   localhost:3000/menus    {text:''}
 app.post("/menus", (req, res) => {
   // 接收前端传递过的用户数据
   // console.log(req.body.text);

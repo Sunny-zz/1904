@@ -1,0 +1,34 @@
+{
+  "todos": [
+    {
+      "id": "1238997sdqgu2yu1",
+      "title": "学习 vue + ts",
+      "content": "就是康号就上到卡几",
+      "type": "study"
+    },
+    {
+      "id": "12389927sdqgu2yu1",
+      "title": "学习 vue + ts",
+      "content": "就是康号就上到卡几",
+      "type": "study"
+    },
+    {
+      "id": "12389973sdqgu2yu1",
+      "title": "学习 vue + ts",
+      "content": "就是康号就上到卡几",
+      "type": "life"
+    },
+    {
+      "id": "1238997s4dqgu2yu1",
+      "title": "学习 vue + ts",
+      "content": "就是康号就上到卡几",
+      "type": "life"
+    },
+    {
+      "id": "1238997s5dqgu2yu1",
+      "title": "学习 vue + ts",
+      "content": "就是康号就上到卡几",
+      "type": "study"
+    }
+  ]
+}

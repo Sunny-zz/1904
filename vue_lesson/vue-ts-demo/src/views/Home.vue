@@ -1,25 +1,63 @@
 <template>
   <div>
-    <h1>Home</h1>
-    <div>
-      <button>-</button>
-      <span>{{ count }}</span>
-      <button @click="add">+</button>
+    <Header @change-show-todos="changeShowTodos" />
+    <hr />
+    <div class="todo-list" v-if="showTodos.length">
+      <TodoItem v-for="todo in showTodos" :key="todo.id" v-bind="todo" />
     </div>
   </div>
 </template>
-
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-// 我们通过 vue-property-decorator 导入了 Vue 以及 Component
-// vue-property-decorator 是一个vue类组件装饰器 快速方便的使用类组件内的属性和方法
+import { Vue, Component } from 'vue-property-decorator'
+import TodoItem from '../components/TodoItem.vue'
+import Header from '../components/Header.vue'
+import $axios from '../plugins/axios'
 
-@Component
+export interface SearchObj {
+  titleStr: string;
+  type: string;
+}
+
+interface TodoItemObj {
+  id: string;
+  title: string;
+  type: string;
+  content: string;
+}
+
+@Component({
+  components: {
+    TodoItem,
+    Header
+  }
+})
 export default class Home extends Vue {
-  // 直接在类里面新增属性就相当于之前的 data
-  count = 0
-  add() {}
+  // 将 todos 定义成具体对象的数据，这个对象需要定义接口
+  todos: Array<TodoItemObj> = []
+  showTodos: Array<TodoItemObj> = []
+  async created () {
+    const res = await $axios.get('/todos')
+    this.todos = res.data
+    this.showTodos = res.data
+  }
+
+  changeShowTodos ({ titleStr, type }: SearchObj) {
+    if (!titleStr && !type) {
+      this.showTodos = this.todos
+    } else {
+      this.showTodos = this.todos.filter(
+        (todo) => todo.title.includes(titleStr) && todo.type === type
+      )
+    }
+  }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.todo-list {
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+</style>
