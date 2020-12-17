@@ -6,7 +6,7 @@
       </el-option>
     </el-select>
     <el-button @click="search(input,value)" type="primary">搜索</el-button>
-    <el-button type="primary">添加</el-button>
+    <el-button type="primary" @click="$router.push('/todo/create')">添加</el-button>
   </header>
 </template>
 

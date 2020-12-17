@@ -3,7 +3,11 @@
     <Header @change-show-todos="changeShowTodos" />
     <hr />
     <div class="todo-list" v-if="showTodos.length">
-      <TodoItem v-for="todo in showTodos" :key="todo.id" v-bind="todo" />
+      <template v-for="todo in showTodos" >
+        <router-link :to='`/todo/${todo.id}`' :key="todo.id">
+          <TodoItem v-bind="todo" />
+        </router-link>
+      </template>
     </div>
   </div>
 </template>
@@ -18,8 +22,8 @@ export interface SearchObj {
   type: string;
 }
 
-interface TodoItemObj {
-  id: string;
+export interface TodoItemObj {
+  id?: string;
   title: string;
   type: string;
   content: string;

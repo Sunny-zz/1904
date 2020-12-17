@@ -16,9 +16,14 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/About.vue')
   },
   {
+    path: '/todo/create',
+    name: 'create',
+    component: () => import('../views/Todo.vue')
+  },
+  {
     path: '/todo/:id',
     name: 'todo',
-    component: () => import('../views/About.vue')
+    component: () => import('../views/Todo.vue')
   }
 ]
 
