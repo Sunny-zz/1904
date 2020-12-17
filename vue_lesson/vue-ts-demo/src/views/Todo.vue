@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$route.params.id ? todo : true ">
+  <div v-if="$route.params.id ? todo : true">
     <el-button type="primary" @click="$router.push('/')">返回</el-button>
     <el-button v-if="!isEdit && $route.params.id" type="primary" @click="edit"
       >编辑</el-button
@@ -11,6 +11,7 @@
       >取消</el-button
     >
     <el-button v-if="isEdit" type="primary" @click="save">保存</el-button>
+    <el-button v-if="!isEdit" type="primary" @click="del">删除</el-button>
     <div v-if="!isEdit">
       <h2>{{ todo.title }}</h2>
       <h3>{{ todo.type }}</h3>
@@ -41,11 +42,14 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { TodoItemObj } from './Home.vue'
 import $axios from '../plugins/axios'
+import VueRouter, { Route } from 'vue-router'
+// import { MessageBox, Message } from 'element-ui'
+
 @Component
 export default class Todo extends Vue {
-  $route
-  $router
-  todo: TodoItemObj = null
+  $route!: Route
+  $router!: VueRouter
+  todo: TodoItemObj | null = null
   isEdit = false
   input = ''
   value = ''
@@ -71,9 +75,12 @@ export default class Todo extends Vue {
 
   edit () {
     this.isEdit = true
-    this.input = this.todo.title
-    this.value = this.todo.type
-    this.textarea = this.todo.content
+    const { todo } = this
+    if (todo) {
+      this.input = todo.title
+      this.value = todo.type
+      this.textarea = todo.content
+    }
   }
 
   async save () {
@@ -99,6 +106,26 @@ export default class Todo extends Vue {
     // this.input = ''
     // this.value = ''
     // this.textarea = ''
+  }
+
+  del () {
+    this.$messageBox.confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+      .then(() => {
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        })
+      })
+      .catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
   }
 }
 </script>
