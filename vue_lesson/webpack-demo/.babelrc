@@ -1,0 +1,24 @@
+// 在编译js 的时候如果使用了 babel-loader 那么 .babelrc 文件就是 这个 babel 的默认配置文件
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  // 插件 
+  "plugins": [
+    [
+      "component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }
+    ],
+    [
+      "transform-vue-jsx"
+    ]
+  ]
+}

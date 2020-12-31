@@ -20,6 +20,7 @@
     <!-- <button @click="()=>{bgColor = 'blue'}" class="change">切换颜色</button> -->
     <!-- 事件函数内只有修改 data 的操作 那么上述写法可以直接简化成 -->
     <button @click="bgColor = 'blue'" class="change">切换颜色</button>
+    <img src="./assets/logo.png" alt="">
   </div>
 </template>
 

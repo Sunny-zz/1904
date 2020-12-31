@@ -3,12 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <title>webpack demo</title>
+  
+  <style>
+    /* 我这里面写的样式希望将打包之后的覆盖掉 */
+    body{
+      margin: 20px;
+    }
+  </style>
+  
 </head>
 <body>
   <noscript>
     <strong>We're sorry but doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
   </noscript>
+  <!-- <button onclick="fun.call(this,event,10)">按钮</button> -->
+  <!-- <img src="../src/assets/logo.png" alt=""> -->
   <div id='app'></div>
+  <!-- <script>
+    function fun(eve,a) {
+      console.log('哈哈哈' + a)
+      console.log(eve.target)
+      console.log(this)
+    }
+  </script> -->
 </body>
 </html>
