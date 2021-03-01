@@ -8,15 +8,17 @@
   </div>
 </template>
 <script>
-import Home from './views/Home'
 export default {
-  name: 'App',
+  name: "App",
   created() {
     // console.log(this.$router)
     // console.log(this.$router)
-  }
-}
+  },
+};
 </script>
 
 <style>
+.box {
+  width: 100px;
+}
 </style>

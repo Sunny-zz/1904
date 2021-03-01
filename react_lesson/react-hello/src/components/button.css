@@ -1,0 +1,22 @@
+.btn {
+  width: 70px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  background-color: #00b3d4;
+  margin-right: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+.btn:hover{
+  background-color: #0294ad;
+}
+.btn.login{
+  background-color: blue;
+}
+.btn.signin{
+  background-color: #ccc;
+}
