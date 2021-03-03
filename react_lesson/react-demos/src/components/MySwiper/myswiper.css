@@ -10,6 +10,7 @@
   top: 0;
   left: 0;
   opacity: 0;
+  transition: all 0.5s;
 }
 .my-swiper .img-item.active{
   opacity: 1;
@@ -32,4 +33,25 @@
 }
 .my-swiper .pagination .pagination-item.active {
   background-color: #00b3d4;
+}
+
+.my-swiper .left-arrow, .my-swiper .right-arrow {
+  width: 30px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  top: 50%;
+  margin-top: -30px;
+  text-align: center;
+  z-index: 2;
+  cursor: pointer;
+  color: #fff;
+}
+.my-swiper .left-arrow {
+  left: 0;
+}
+.my-swiper .right-arrow{
+  right: 0;
 }
