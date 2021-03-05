@@ -1,7 +1,7 @@
 // import LifeCycle from "./components/LifeCycle/LifeCycle";
 // import MySwiper from "./components/MySwiper/MySwiper";
 import { Component } from 'react'
-import ArticleComment from './components/ArticleComment/ArticleComment'
+import ArticleComment1 from './components/ArticleComment/ArticleComment1'
 // import ModalDemo from './components/Modal/ModalDemo';
 // function App() {
 //   return (
@@ -33,7 +33,7 @@ class App extends Component {
         {/* <h2>对话框</h2> */}
         {/* <ModalDemo /> */}
         <h2>文章评论</h2>
-        <ArticleComment />
+        <ArticleComment1 />
       </div>
     )
   }

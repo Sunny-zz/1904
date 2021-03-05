@@ -1,0 +1,11 @@
+.goods-content .table-header{
+  width: 170px;
+  display: flex;
+  justify-content: space-between;
+}
+.goods-content .table-header h3 {
+  margin: 0;
+}
+.goods-content .right {
+  width: 80px;
+}
