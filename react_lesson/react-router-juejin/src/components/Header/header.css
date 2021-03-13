@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  width: 80%;
+  margin: 0 auto;
+}
+header a {
+  color: #000;
+  margin-left: 20px;
+}
+header .active {
+  color: #007fff;
+}

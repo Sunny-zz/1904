@@ -1,8 +1,8 @@
 import TodoItem from "../TodoItem/TodoItem"
 
-const TodoContent = (props) => {
+const TodoContent = ({showTodos, ...otherProps}) => {
   const content = <ul>
-    {props.showTodos.map(todo => <TodoItem key={todo.id}  {...todo} {...props} />)}
+    {props.showTodos.map(todo => <TodoItem key={todo.id}  {...todo} {...otherProps} />)}
   </ul>
   return (
     <div className='todo-content'>

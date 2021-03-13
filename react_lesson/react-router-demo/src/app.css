@@ -1,0 +1,7 @@
+.App a{
+  color: #000;
+  text-decoration: none;
+}
+.App .nav-active{
+  color: #00b3d4;
+}

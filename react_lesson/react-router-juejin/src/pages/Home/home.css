@@ -1,0 +1,12 @@
+.home .nav-list{
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
+.home a {
+  color: #000;
+  margin-right: 10px;
+}
+.home .active {
+  color: #007fff;
+}
