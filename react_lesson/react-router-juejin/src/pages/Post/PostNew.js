@@ -6,14 +6,28 @@ class PostNew extends Component {
     comments: [],
     commentText: ''
   }
-  async componentDidMount() {
+  // async componentDidMount() {
+  //   const { id } = this.props.match.params
+  //   const res = await axios.all([axios.get(`http://localhost:3008/posts/${id}`), axios.get(`http://localhost:3008/comments?postId=${id}`)])
+
+  //   this.setState({
+  //     post: res[0].data,
+  //     comments: res[1].data
+  //   })
+  // }
+  componentDidMount() {
     const { id } = this.props.match.params
-    const res = await axios.all([axios.get(`http://localhost:3008/posts/${id}`), axios.get(`http://localhost:3008/comments?postId=${id}`)])
-    // console.log(res)
-    this.setState({
-      post: res[0].data,
-      comments: res[1].data
+    axios.all([axios.get(`http://localhost:3008/posts/${id}`), axios.get(`http://localhost:3008/comments?postId=${id}`)]).then(res => {
+      this.setState({
+        post: res[0].data,
+        comments: res[1].data
+      })
+    }).catch(err => {
+      console.log(err)
+      this.props.history.push('/notfound')
     })
+
+
   }
   addComment = async () => {
     const { commentText, comments } = this.state
@@ -27,15 +41,15 @@ class PostNew extends Component {
     }
   }
   delComment = async id => {
-    const {  comments } = this.state
+    const { comments } = this.state
     const res = await axios.delete(`http://localhost:3008/comments/${id}`)
     // console.log(res)
-    if(res.status === 200){
+    if (res.status === 200) {
       this.setState({
         comments: comments.filter(comment => comment.id !== id)
       })
     }
-  } 
+  }
   render() {
     const { post, comments, commentText } = this.state
     return (
@@ -49,7 +63,7 @@ class PostNew extends Component {
           <div className="comment-list">
             {
               comments.length ? <ul>
-                {comments.map(comment => <li key={comment.id}><span>{comment.text}</span><button onClick={()=> this.delComment(comment.id)}>删除</button></li>)}
+                {comments.map(comment => <li key={comment.id}><span>{comment.text}</span><button onClick={() => this.delComment(comment.id)}>删除</button></li>)}
               </ul> : <div>暂无评论</div>
             }
           </div>

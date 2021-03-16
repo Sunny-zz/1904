@@ -6,9 +6,9 @@ const Home = () => {
   return (
     <div className='home'>
       <div className="nav-list">
-        <NavLink isActive={(match, location) => (location.pathname === '/' || location.pathname === '/recommended') ? true : false} to='/recommended'>推荐</NavLink>
-        <NavLink to='/frontend'>前端</NavLink>
-        <NavLink to='/backend'>后端</NavLink>
+        <NavLink isActive={(match, location) => (location.pathname === '/' || location.pathname === '/recommended') ? true : false} to={{pathname: '/recommended', state:{default: 'recommended'}}}>推荐</NavLink>
+        <NavLink to={{pathname: '/frontend', state:{default: 'frontend'}}} >前端</NavLink>
+        <NavLink to={{pathname: '/backend', state:{default: 'backend'}}} >后端</NavLink>
       </div>
       {/* 将文章列表组件是否设置成路由页面 */}
       {/* 不做成页面 */}

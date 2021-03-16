@@ -6,7 +6,7 @@ const Header = () => {
   return (
   <header>
     <img onClick={()=> history.push('/')} src="https://sf3-scmcdn2-tos.pstatp.com/xitu_juejin_web/img/logo.a7995ad.svg" alt=""/>
-    <NavLink isActive={(match, location) => types.includes(location.pathname) } to='/'>首页</NavLink>
+    <NavLink isActive={(match, location) => types.includes(location.pathname) } to={{pathname:'/', state: {default: 'recommended'}}}>首页</NavLink>
     <NavLink to='/pins'>沸点</NavLink>
   </header>
   );
