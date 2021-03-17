@@ -24,9 +24,9 @@ class PostList extends Component {
       })
     }, 200);
   }
-  itemRender = (current, type, originalElement) =>  {
-    console.log(current, type, originalElement)
-    if(current === 1 && type === 'page'){
+  itemRender = (current, type, originalElement) => {
+    // console.log(current, type, originalElement)
+    if (current === 1 && type === 'page') {
       return <div>第一页</div>
     }
     return originalElement

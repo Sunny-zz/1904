@@ -2,6 +2,8 @@
 /* 引入 css 文件  antd 的样式初始化 css 文件*/
 body {
   margin: 0;
+  height: 2000px;
+  padding-left: 20px;
 }
 
 * {
