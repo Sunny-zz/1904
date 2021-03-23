@@ -10,6 +10,11 @@ import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors'
 import LessDemo from './components/LessDemo/LessDemo';
+import SassDemo from './components/SassDemo/SassDemo';
+import StyledComponentsDemo from './components/StyledComponentsDemo/StyledComponentsDemo';
+import EchartsDemo from './components/EchartsDemo/EchartsDemo';
+import EditorDemo from './EditorDemo/EditorDemo';
+import MomentDemo from './components/MomentDemo/MomentDemo';
 // makeStyles 是一个方法用来制作覆盖 material 组件原有样式的样式方法
 // 用法 
 // 1. 传递一个对象给 makeStyles, 该对象下的属性都是样式对象
@@ -88,6 +93,16 @@ function App() {
         </div>
         <hr/>
         <LessDemo/>
+        <hr/>
+        <SassDemo />
+        <hr/>
+        <StyledComponentsDemo />
+        <hr/>
+        <EchartsDemo />
+        <hr/>
+        <EditorDemo />
+        <hr/>
+        <MomentDemo />
       </div>
     </ThemeProvider>
   );
