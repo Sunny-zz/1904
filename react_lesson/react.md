@@ -65,3 +65,23 @@ event  ref
   - Route   path  component | children | render 
   - Switch  功能型
 
+
+### redux  
+安装
+- redux
+- react-redux
+
+创建 store
+- createStore
+- reducer
+  - 初始化 store 数据
+  - 提供修改的方法，需要 action 触发 (切记不能直接对 state 进行修改)
+
+组件内使用和修改 (react-redux)
+- Provider
+- connect 
+  - mapStateToProps
+  - mapDispatchToProps
+
+redux 中间件
+- redux-logger 
