@@ -1,2 +1,6 @@
 export const GET_POSTS = 'GET_POSTS'
 export const DEL_POST = 'DEL_POST'
+export const GET_POST = 'GEI_POST'
+export const CLEAR_POST = 'CLEAR_POST'
+export const EDIT_POST = 'EDIT_POST'
+export const CREATE_POST = 'CREATE_POST'
