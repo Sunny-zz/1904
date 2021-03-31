@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { Form, Input, Button, Spin } from 'antd'
 const { TextArea } = Input;
 const EditPost = ({ post, getPost, clearPost, editPost, createPost }) => {
@@ -7,6 +7,7 @@ const EditPost = ({ post, getPost, clearPost, editPost, createPost }) => {
   // const { id } = match.params
   // 用路由的 hook 也可以获取对应的地址 id
   const { id } = useParams()
+  const history = useHistory()
   // 我们要区分什么时候该组件是创建什时候是编辑
   useEffect(() => {
     clearPost()
@@ -19,10 +20,13 @@ const EditPost = ({ post, getPost, clearPost, editPost, createPost }) => {
     }
   }, [getPost, clearPost, createPost, id])
 
-  const onFinish = value => {
+  const onFinish = async value => {
     // console.log(value)
     // console.log(post)
-    id ? editPost({ ...value, id }) : createPost(value)
+    id ? await editPost({ ...value, id }) : await createPost(value)
+    // 编辑或者创建提交之后，需要跳转到首页
+    // console.log('跳转首页')
+    history.push('/')
   }
   // 全局修改了提示的信息
   // const validateMessages = {

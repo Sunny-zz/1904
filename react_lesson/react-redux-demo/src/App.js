@@ -1,5 +1,7 @@
 import PostsContainer from "./containers/PostsContainer";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+// BrowserRouter 完全模拟浏览器历史纪录  需要服务器支持，所有地址全部返回 index.html 页面
+// HashRouter  锚点模式 
 import PostContainer from "./containers/PostContainer";
 function App() {
   return (

@@ -11,7 +11,9 @@ const Posts = ({ posts, delPost, getPosts }) => {
     setTotal(res.data.total)
   }
   useEffect(() => {
-    getTotal()
+    setTimeout(() => {
+      getTotal()
+    }, 10)
   }, [])
   // 控制表格的每一列
   const columns = [
@@ -34,14 +36,16 @@ const Posts = ({ posts, delPost, getPosts }) => {
       dataIndex: 'title',
       key: 'title',
       // 要设置成跳转页面的链接
-      render: (title,record) => <Link to={`/post/${record.id}`}>{title}</Link>
+      render: (title, record) => <Link to={`/post/${record.id}`}>{title}</Link>
     },
     {
       title: 'Action',
       key: 'action',
       render: (record) => (
         <Space size='middle'>
-          <Button type='primary' size='small'>Edit</Button>
+          <Link to={`/post/${record.id}`} >
+            <Button type='primary' size='small'>Edit</Button>
+          </Link>
           <Popconfirm
             title="是否确定删除吗?"
             onConfirm={async () => {
@@ -67,6 +71,7 @@ const Posts = ({ posts, delPost, getPosts }) => {
           showSizeChanger: true,
           showQuickJumper: true,
           total: total,
+          pageSize: 10,
           showTotal: (total, range) => {
             // console.log(total)
             return `一共 ${total} 条`

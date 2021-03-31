@@ -31,6 +31,7 @@ export const editPost = newPost => async dispatch=> {
 // 创建文章
 export const createPost = newPost => newPost ? async dispatch => {
   const res = await axios.post(`/posts/create`, {post: newPost})
+  console.log(res)
   dispatch({type: CREATE_POST, newPost: res.data})
 } : ({type: CREATE_POST})
 
