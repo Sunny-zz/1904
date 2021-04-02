@@ -1,17 +1,12 @@
 import React from 'react';
-import { Router, Route, Switch } from 'dva/router';
+import { Router, Route } from 'dva/router';
 import IndexPage from './routes/IndexPage';
-import AboutPage from './routes/AboutPage';
 
+// 大页面配置
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
-      <Switch>
-        <Route path="/" exact component={IndexPage} />
-        <Route to='/about'>
-          <AboutPage />
-        </Route>
-      </Switch>
+      <Route path='/' component={IndexPage}></Route>
     </Router>
   );
 }

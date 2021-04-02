@@ -1,41 +1,24 @@
-import { Link } from "dva/router"
-import { connect } from 'dva'
-import { Component } from 'react'
+import { NavLink, Route } from "react-router-dom"
+import HomePage from "./HomePage";
+import ListPage from "./ListPage";
 
-class IndexPage extends Component {
-  state = {
-    num: ''
+const IndexPage = ({ history }) => {
+  const goHome = () => {
+    history.push('/')
   }
-  add = () => {
-    this.props.dispatch({ type: 'count/add' })
-  }
-  set = () => {
-    // console.log(this.state.num)
-    this.props.dispatch({type: 'count/setCount', data: this.state.num })
-  }
-  handleInput = e => {
-    this.setState({
-      num: e.target.value
-    })
-  }
-  render() {
-    return (
-      <div>
-        我是首页
-        <Link to={{ pathname: '/about' }} >
-          去 about 页
-        </Link>
-        <p>dva model 中的 count 模块数据: {this.props.count}</p>
-        <button onClick={this.add}>add</button>
-        <input value={this.state.num} onChange={this.handleInput} type="text" />
-        <button onClick={this.set}>set</button>
+  return (
+    <div>
+      <h2 onClick={goHome}>我是logo</h2>
+      <div className="nav">
+        <NavLink to='/todo'>待办事项</NavLink>
+        <span> | </span>
+        <NavLink to='/list'>列表</NavLink>
       </div>
-    );
-
-  }
+      <Route path='/todo' component={HomePage} />
+      <Route path='/list' component={ListPage} />
+      <Route exact path='/' render={() => <h1>我是首页</h1>} />
+    </div>
+  );
 }
 
-const mapStateToProps = state => ({
-  count: state.count
-})
-export default connect(mapStateToProps)(IndexPage);
+export default IndexPage;

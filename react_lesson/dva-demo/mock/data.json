@@ -1,8 +1,19 @@
 {
   "list": [
-    1,
-    2,
-    3,
-    4
+    {
+      "id": 1,
+      "text": "吃饭",
+      "isCompleted": false
+    },
+    {
+      "id": 2,
+      "text": "学习",
+      "isCompleted": true
+    },
+    {
+      "id": 3,
+      "text": "打游戏",
+      "isCompleted": false
+    }
   ]
 }
