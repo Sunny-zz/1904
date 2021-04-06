@@ -1,0 +1,79 @@
+<!-- index.wxml -->
+<view class="container">
+  <text>hello world 1</text>
+  <!-- <view hover-class="active">hello 11111</view> -->
+  <!-- <view class="box">
+  <view class="item"></view>
+  <view class="item"></view>
+  <view class="item"></view>
+  <view class="item"></view>
+  <view class="item"></view>
+</view> -->
+  <!-- <scroll-view scroll-y class="box">
+    <view class="item"></view>
+    <view class="item"></view>
+    <view class="item"></view>
+    <view class="item"></view>
+    <view class="item"></view>
+  </scroll-view>
+  <icon type="success" />
+  <rich-text>
+    hello
+    <span>world</span>
+  </rich-text>
+  <textarea hold-keyboard="{{true}}">
+    <keyboard-accessory class="container" style="height: 50px;">
+      <cover-view bindtap="tap" style="flex: 1; background: green;">1</cover-view>
+      <cover-view bindtap="tap" style="flex: 1; background: red;">2</cover-view>
+    </keyboard-accessory>
+  </textarea>
+  <view class="section">
+    <view class="section__title">省市区选择器</view>
+    <picker mode="region">
+      <view class="picker">当前选择 了哈哈哈 {{10 + 10}}</view>
+    </picker>
+  </view> -->
+  <view class="number-demo">
+    <button size="mini" bindtap="sub">-</button>
+    <text>{{count}}</text>
+    <!-- bind:事件名   绑定事件  简写  bind事件名 -->
+    <!-- 官方已经不使用  bind:事件名  方式 -->
+    <button size="mini" bindtap="add">+</button>
+  </view>
+  <view>
+    <input style="width: 80%;margin: 10px 0;" class="number" type="number" value="{{val}}" bindblur="change" />
+    <!-- 小程序内新增了 model 双向写法，但是尚不成熟，只能针对基础数据类型, 而且默认的修改事件是 input 事件 -->
+    <!-- <input style="width: 80%;margin: 10px 0;" class="number" type="number" model:value="{{val}}" /> -->
+    <!-- <text>{{val}}</text> -->
+    <button bindtap="changeCount" style="width: 100%">根据输入框内容更新 count</button>
+    <!-- 绑定并阻止事件冒泡 可以使用 catch 绑定事件 -->
+    <!-- dataset 自定义节点数据可以用于事件传递参数  data-xx -->
+    <button hidden="{{false}}" data-num="{{10}}" bindtap="changeCountByParams">事件传参修改 count</button>
+  </view>
+  <button bindtap="changeShow" class="btn" type="primary">出现或者消失</button>
+  <!-- 1. wx:if  wx:else  wx:elif -->
+  <!-- 2. hidden -->
+  <view wx:if="{{show}}" class="box1"></view>
+  <view wx:else>box1和我只有要一个</view>
+  <view hidden="{{show}}" class="box2"></view>
+  <view hidden="{{!show}}">box2和我只能有一个出现</view>
+  <view>
+    <!-- wx:for 的时候默认 item  和  index 都自动定义了 -->
+    <!-- item 就是当前的数组项， index 是对应的索引 -->
+    <!-- wx:key 的值是一个字符串，默认会从 item 内的属性中查找 -->
+    <!-- wx:for-item   wx:for-index 可以实现默认的当前项和索引换名字 -->
+    <block wx:for-item="xx" wx:for="{{arr}}" wx:key="id">
+      <view>{{index}}</view>
+      <view>
+        <text>{{xx.text}}</text>
+      </view>
+    </block>
+    <!-- 列表渲染和条件渲染都可以使用 block 渲染多个根节点 -->
+    <!-- block 标签不会渲染任何的节点 -->
+
+
+    <!-- 页面跳转 需要使用导航组件 -->
+    <navigator url='/pages/about/about'>去关于页</navigator>
+    <button bindtap="goAbout">去关于页</button>
+  </view>
+</view>

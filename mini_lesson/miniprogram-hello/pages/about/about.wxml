@@ -1,0 +1,3 @@
+<!--pages/about/about.wxml-->
+<navigator url='/pages/index/index'>回首页</navigator>
+<text>pages/about/about.wxml</text>
