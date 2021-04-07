@@ -1,0 +1,9 @@
+/* components/box/box.wxss */
+.box{
+  width: 300rpx;
+  height: 300rpx;
+  background-color: #ccc;
+}
+.box.active {
+  background-color: red;
+}

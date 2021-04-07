@@ -76,4 +76,5 @@
     <navigator url='/pages/about/about'>去关于页</navigator>
     <button bindtap="goAbout">去关于页</button>
   </view>
+  <box text='首页的文字' />
 </view>

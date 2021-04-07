@@ -1,3 +1,4 @@
 <!--pages/about/about.wxml-->
-<navigator url='/pages/index/index'>回首页</navigator>
+<navigator open-type="switchTab" url='/pages/index/index'>回首页</navigator>
 <text>pages/about/about.wxml</text>
+<box text='关于页传递的文字' />

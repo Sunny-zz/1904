@@ -1,0 +1,11 @@
+<!--pages/me/me.wxml-->
+<view>
+  <text wx:if="{{!userInfo}}" bindtap="login">点击登录</text>
+  <view wx:else>
+    <text>{{userInfo.nickName}}</text>
+    <image src="{{userInfo.avatarUrl}}" />
+  </view>
+  <view>
+    <view wx:if="{{obj}}">{{obj.author.name}}</view>
+  </view>
+</view>

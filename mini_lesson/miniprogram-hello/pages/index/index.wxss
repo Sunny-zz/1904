@@ -5,8 +5,7 @@
 .active {
   color: red;
 }
-.box{
-  /* width: 100%; */
+/* .box{
   width: 750rpx;
   height: 500px;
   background-color: #ccc;
@@ -16,7 +15,7 @@
   margin: 10px auto;
   height: 100px;
   background-color: red;
-}
+} */
 .number-demo {
   display: flex;
   width: 375rpx;

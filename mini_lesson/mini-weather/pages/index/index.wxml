@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<view wx:if="{{address.length}}" class="container">
+  <picker mode="region" bindchange="bindRegionChange" value="{{address}}" >
+    <view class="picker">
+      当前选择：<text>{{address[1] + ' ' + address[2]}}</text>
+    </view>
+  </picker>
+  <view>{{weatherData}}</view>
+</view>

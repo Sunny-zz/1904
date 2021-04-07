@@ -1,9 +1,10 @@
 // index.js
 // 获取应用实例
-// const app = getApp()
+const app = getApp()
 
 //Page Object
 Page({
+
   // 当前页面的数据 data
   // vue 中的 data | react 中的 state
   data: {
@@ -25,9 +26,16 @@ Page({
       }
     ]
   },
-  goAbout(){
+  onLoad(){
+    // console.log(app.globalData)
+  },
+  goAbout() {
     // 不使用导航组件实现页面的跳转
-    wx.navigateTo({
+    // wx.navigateTo({
+    //   // url 要写路径实现跳转
+    //   url: '../about/about',
+    // })
+    wx.switchTab({
       // url 要写路径实现跳转
       url: '../about/about',
     })
@@ -43,7 +51,7 @@ Page({
       // console.log(this.data.count)
     })
   },
-  sub(){
+  sub() {
     this.setData({
       count: this.data.count - 1
     }, () => {
@@ -59,7 +67,7 @@ Page({
 
   // 事件冒泡
   // 阻止使用 catch 绑定事件
-  change(e){
+  change(e) {
     // 通过事件对象获取输入框中的内容
     // e.detail  获取输入的内容
     // console.log(typeof e.detail.value)
@@ -67,24 +75,24 @@ Page({
       val: Number(e.detail.value)
     })
   },
-  changeCount (){
+  changeCount() {
     console.log('点击事件触发')
     this.setData({
       count: this.data.val
     })
   },
-  changeCountByParams(e){
+  changeCountByParams(e) {
     // 通过 e.currentTarget 的 dataset 可以获取该节点的自定义数据，从而实现事件传参
     console.log(e)
     this.setData({
       count: e.currentTarget.dataset.num
     })
   },
-  changeShow(){
+  changeShow() {
     this.setData({
       show: !this.data.show
     })
-  }
+  },
   // data: {
   //   motto: 'Hello World',
   //   userInfo: {},
@@ -127,4 +135,16 @@ Page({
   //     hasUserInfo: true
   //   })
   // }
+
+  // 进入 index 就获取用户信息
+
+  // onLoad(options) {
+  //   console.log(11111)
+  //   wx.getUserProfile({
+  //     desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+  //     success: (res) => {
+  //       console.log(res)
+  //     }
+  //   })
+  // },
 })

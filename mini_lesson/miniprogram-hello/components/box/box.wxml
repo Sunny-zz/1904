@@ -1,0 +1,2 @@
+<!--components/box/box.wxml-->
+<view bindtap="changeColor" class="box{{active?' active' : ''}}">{{text}}</view>
