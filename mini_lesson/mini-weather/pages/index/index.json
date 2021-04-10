@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "backgroundColor": "#00b3d4",
+  "backgroundTextStyle": "dark"
 }

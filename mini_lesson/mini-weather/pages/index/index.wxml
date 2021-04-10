@@ -5,5 +5,10 @@
       当前选择：<text>{{address[1] + ' ' + address[2]}}</text>
     </view>
   </picker>
-  <view>{{weatherData}}</view>
+  <view wx:if="{{weatherData}}">
+    <view>{{weatherData.now_temp}}℃</view>
+    <view>{{weatherData.update_time}}</view>
+    <view>{{weatherData.daily_text}}</view>
+    <view>{{weatherData.now_text}}</view>
+  </view>
 </view>

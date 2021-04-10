@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js"],"names":[],"mappings":";;;;;;;AAAA;AACA;AACA;AACA;AACA","file":"index.js","sourcesContent":["\r\nvar moment = require(\"moment/min/moment-with-locales.min.js\");\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.default = moment;\r\n"]}

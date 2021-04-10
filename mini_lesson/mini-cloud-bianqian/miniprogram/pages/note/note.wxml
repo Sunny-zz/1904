@@ -1,0 +1,11 @@
+<!-- pages/note/note.wxml -->
+<text>新增</text>
+<view>
+  <label for="title">标题</label>
+  <input value="{{title}}" id="title" data-input='title'  bindinput="handleInput"/>
+</view>
+<view>
+  <label for="content">内容</label>
+  <textarea  value="{{content}}" data-input='content' id="content" bindinput="handleInput"></textarea>
+</view>
+<button size="mini" bindtap="handleBtn">{{btnTxt}}</button>

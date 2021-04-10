@@ -1,0 +1,32 @@
+/* miniprogram/pages/index/index.wxss */
+.notes {
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20rpx;
+}
+.note-item {
+  width: 300rpx;
+  height: 300rpx;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+.add{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #00b3d4;
+  font-size: 70rpx;
+  text-align: center;
+  position: fixed;
+  right: 10px;
+  bottom: 50px;
+  color: #fff;
+  display: flex;
+}
+.add .link {
+  width: 100%;
+}

@@ -1,0 +1,17 @@
+<!-- miniprogram/pages/index/index.wxml -->
+<text>第嘉小便签</text>
+<view>
+  <text>你的列表</text>
+</view>
+<view class="notes">
+  <view data-id='{{item._id}}' catchtap='noteClick' class="note-item" wx:for="{{notes}}" wx:key="_id">
+    <text class="note-title">标题: {{item.title}}</text>
+    <view class="note-content">
+      <text>内容:</text>
+      <view>{{item.content}}</view>
+    </view>
+  </view>
+</view>
+<view class="add">
+  <navigator class="link" url="/pages/note/note">+</navigator>
+</view>
